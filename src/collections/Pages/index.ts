@@ -4,9 +4,13 @@ import { authenticated } from '../../access/authenticated'
 import { authenticatedOrPublished } from '../../access/authenticatedOrPublished'
 import { Archive } from '../../blocks/ArchiveBlock/config'
 import { CallToAction } from '../../blocks/CallToAction/config'
+import { CeremonyReception } from '../../blocks/CeremonyReception/config'
 import { Content } from '../../blocks/Content/config'
 import { FormBlock } from '../../blocks/Form/config'
+import { HeroCarousel } from '../../blocks/HeroCarousel/config'
+import { LoveStory } from '../../blocks/LoveStory/config'
 import { MediaBlock } from '../../blocks/MediaBlock/config'
+import { WeddingDetails } from '../../blocks/WeddingDetails/config'
 import { hero } from '@/heros/config'
 import { slugField } from '@/fields/slug'
 import { populatePublishedAt } from '../../hooks/populatePublishedAt'
@@ -75,7 +79,17 @@ export const Pages: CollectionConfig<'pages'> = {
             {
               name: 'layout',
               type: 'blocks',
-              blocks: [CallToAction, Content, MediaBlock, Archive, FormBlock],
+              blocks: [
+                CallToAction,
+                CeremonyReception,
+                Content,
+                MediaBlock,
+                Archive,
+                FormBlock,
+                HeroCarousel,
+                LoveStory,
+                WeddingDetails,
+              ],
               required: true,
               admin: {
                 initCollapsed: true,

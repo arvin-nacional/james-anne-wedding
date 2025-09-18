@@ -66,12 +66,17 @@ export default async function Page({ params: paramsPromise }: Args) {
   const { hero, layout } = page
 
   return (
-    <article className="pt-16 pb-24">
+    <article className="pb-24">
       <PageClient />
       {/* Allows redirects for valid pages too */}
       <PayloadRedirects disableNotFound url={url} />
 
       {draft && <LivePreviewListener />}
+
+      {/* Add spacing for fixed header only if first block is not a hero */}
+      {layout && layout.length > 0 && layout[0]?.blockType !== 'heroCarousel' && (
+        <div className="h-24" />
+      )}
 
       <RenderHero {...hero} />
       <RenderBlocks blocks={layout} />

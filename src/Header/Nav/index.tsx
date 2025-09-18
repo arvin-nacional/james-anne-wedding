@@ -12,13 +12,20 @@ export const HeaderNav: React.FC<{ data: HeaderType }> = ({ data }) => {
   const navItems = data?.navItems || []
 
   return (
-    <nav className="flex gap-3 items-center">
+    <nav className="flex gap-6 items-center">
       {navItems.map(({ link }, i) => {
-        return <CMSLink key={i} {...link} appearance="link" />
+        return (
+          <CMSLink
+            key={i}
+            {...link}
+            appearance="link"
+            className="text-white hover:text-white/80 transition-colors font-medium"
+          />
+        )
       })}
-      <Link href="/search">
+      <Link href="/search" className="text-white hover:text-white/80 transition-colors">
         <span className="sr-only">Search</span>
-        <SearchIcon className="w-5 text-primary" />
+        <SearchIcon className="w-5 h-5" />
       </Link>
     </nav>
   )

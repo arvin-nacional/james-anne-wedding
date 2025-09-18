@@ -191,7 +191,17 @@ export interface Page {
       | null;
     media?: (string | null) | Media;
   };
-  layout: (CallToActionBlock | ContentBlock | MediaBlock | ArchiveBlock | FormBlock)[];
+  layout: (
+    | CallToActionBlock
+    | CeremonyReceptionBlock
+    | ContentBlock
+    | MediaBlock
+    | ArchiveBlock
+    | FormBlock
+    | HeroCarouselBlock
+    | LoveStoryBlock
+    | WeddingDetailsBlock
+  )[];
   meta?: {
     title?: string | null;
     /**
@@ -439,6 +449,97 @@ export interface CallToActionBlock {
   id?: string | null;
   blockName?: string | null;
   blockType: 'cta';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "CeremonyReceptionBlock".
+ */
+export interface CeremonyReceptionBlock {
+  /**
+   * Choose the background style for this section
+   */
+  backgroundColor?: ('transparent' | 'light' | 'lightGreen' | 'dark') | null;
+  /**
+   * Ceremony details and content
+   */
+  ceremony: {
+    /**
+     * Title for the ceremony section
+     */
+    title?: string | null;
+    /**
+     * Description of the ceremony
+     */
+    description: {
+      root: {
+        type: string;
+        children: {
+          type: string;
+          version: number;
+          [k: string]: unknown;
+        }[];
+        direction: ('ltr' | 'rtl') | null;
+        format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+        indent: number;
+        version: number;
+      };
+      [k: string]: unknown;
+    };
+    /**
+     * Time range for the ceremony (e.g., "4:00 PM - 4:30 PM")
+     */
+    timeRange?: string | null;
+    /**
+     * Image for the ceremony section
+     */
+    image: string | Media;
+    /**
+     * Alt text for the ceremony image (for accessibility)
+     */
+    imageAlt?: string | null;
+  };
+  /**
+   * Reception details and content
+   */
+  reception: {
+    /**
+     * Title for the reception section
+     */
+    title?: string | null;
+    /**
+     * Description of the reception
+     */
+    description: {
+      root: {
+        type: string;
+        children: {
+          type: string;
+          version: number;
+          [k: string]: unknown;
+        }[];
+        direction: ('ltr' | 'rtl') | null;
+        format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+        indent: number;
+        version: number;
+      };
+      [k: string]: unknown;
+    };
+    /**
+     * Time range for the reception (e.g., "6:00 PM - 11:00 PM")
+     */
+    timeRange?: string | null;
+    /**
+     * Image for the reception section
+     */
+    image: string | Media;
+    /**
+     * Alt text for the reception image (for accessibility)
+     */
+    imageAlt?: string | null;
+  };
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'ceremonyReception';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -736,6 +837,232 @@ export interface Form {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "HeroCarouselBlock".
+ */
+export interface HeroCarouselBlock {
+  /**
+   * Main hero title (e.g., "Rosie & James")
+   */
+  title: string;
+  /**
+   * Subtitle text (e.g., "June 15th, 2024 • Bloomfield, CA")
+   */
+  subtitle?: string | null;
+  /**
+   * Optional rich text description below the subtitle
+   */
+  description?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  /**
+   * Hero background images for the carousel
+   */
+  images: {
+    image: string | Media;
+    id?: string | null;
+  }[];
+  /**
+   * Primary call-to-action button (e.g., "RSVP Now")
+   */
+  primaryButton: {
+    link: {
+      type?: ('reference' | 'custom') | null;
+      newTab?: boolean | null;
+      reference?:
+        | ({
+            relationTo: 'pages';
+            value: string | Page;
+          } | null)
+        | ({
+            relationTo: 'posts';
+            value: string | Post;
+          } | null);
+      url?: string | null;
+      label: string;
+      /**
+       * Choose how the link should be rendered.
+       */
+      appearance?: 'default' | null;
+    };
+  };
+  /**
+   * Secondary call-to-action button (e.g., "View Details")
+   */
+  secondaryButton: {
+    link: {
+      type?: ('reference' | 'custom') | null;
+      newTab?: boolean | null;
+      reference?:
+        | ({
+            relationTo: 'pages';
+            value: string | Page;
+          } | null)
+        | ({
+            relationTo: 'posts';
+            value: string | Post;
+          } | null);
+      url?: string | null;
+      label: string;
+      /**
+       * Choose how the link should be rendered.
+       */
+      appearance?: 'outline' | null;
+    };
+  };
+  /**
+   * Automatically advance carousel images
+   */
+  autoAdvance?: boolean | null;
+  /**
+   * Auto-advance interval in milliseconds (1000-30000)
+   */
+  autoAdvanceInterval?: number | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'heroCarousel';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "LoveStoryBlock".
+ */
+export interface LoveStoryBlock {
+  /**
+   * Main section title (e.g., "Our Love Story", "About Us")
+   */
+  sectionTitle?: string | null;
+  /**
+   * Optional subtitle below the section title
+   */
+  title?: string | null;
+  /**
+   * Choose the background style for this section
+   */
+  backgroundColor?: ('transparent' | 'light' | 'lightGreen' | 'dark' | 'image') | null;
+  /**
+   * Background image for the section (only used when "Background Image with Green Overlay" is selected)
+   */
+  backgroundImage?: (string | null) | Media;
+  /**
+   * Your love story content - can include multiple paragraphs
+   */
+  content: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  /**
+   * Main image for the love story section
+   */
+  image: string | Media;
+  /**
+   * Alt text for the image (for accessibility)
+   */
+  imageAlt?: string | null;
+  /**
+   * Choose whether the image appears on the left or right side
+   */
+  layout?: ('imageRight' | 'imageLeft') | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'loveStory';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "WeddingDetailsBlock".
+ */
+export interface WeddingDetailsBlock {
+  /**
+   * Main section title
+   */
+  sectionTitle?: string | null;
+  /**
+   * Subtitle below the main title
+   */
+  subtitle?: string | null;
+  /**
+   * Choose the background style for this section
+   */
+  backgroundColor?: ('light' | 'lightGreen' | 'transparent' | 'dark' | 'image') | null;
+  /**
+   * Background image for the section (only used when "Background Image with Green Overlay" is selected)
+   */
+  backgroundImage?: (string | null) | Media;
+  /**
+   * Add wedding detail cards (date, time, location, etc.)
+   */
+  details: {
+    /**
+     * Choose an icon for this detail card
+     */
+    icon: 'calendar' | 'clock' | 'mapPin';
+    /**
+     * Card title (e.g., "Save the Date", "Ceremony Time")
+     */
+    title: string;
+    /**
+     * Small text above main text (e.g., "Saturday", "Begins at")
+     */
+    subtitle?: string | null;
+    /**
+     * Main prominent text (e.g., "June 15th, 2024", "4:00 PM")
+     */
+    mainText: string;
+    /**
+     * Optional additional description or details
+     */
+    description?: {
+      root: {
+        type: string;
+        children: {
+          type: string;
+          version: number;
+          [k: string]: unknown;
+        }[];
+        direction: ('ltr' | 'rtl') | null;
+        format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+        indent: number;
+        version: number;
+      };
+      [k: string]: unknown;
+    } | null;
+    /**
+     * Optional image for the card header
+     */
+    image?: (string | null) | Media;
+    /**
+     * Alt text for the image (for accessibility)
+     */
+    imageAlt?: string | null;
+    id?: string | null;
+  }[];
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'weddingDetails';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "redirects".
  */
 export interface Redirect {
@@ -1021,10 +1348,14 @@ export interface PagesSelect<T extends boolean = true> {
     | T
     | {
         cta?: T | CallToActionBlockSelect<T>;
+        ceremonyReception?: T | CeremonyReceptionBlockSelect<T>;
         content?: T | ContentBlockSelect<T>;
         mediaBlock?: T | MediaBlockSelect<T>;
         archive?: T | ArchiveBlockSelect<T>;
         formBlock?: T | FormBlockSelect<T>;
+        heroCarousel?: T | HeroCarouselBlockSelect<T>;
+        loveStory?: T | LoveStoryBlockSelect<T>;
+        weddingDetails?: T | WeddingDetailsBlockSelect<T>;
       };
   meta?:
     | T
@@ -1060,6 +1391,33 @@ export interface CallToActionBlockSelect<T extends boolean = true> {
               appearance?: T;
             };
         id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "CeremonyReceptionBlock_select".
+ */
+export interface CeremonyReceptionBlockSelect<T extends boolean = true> {
+  backgroundColor?: T;
+  ceremony?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        timeRange?: T;
+        image?: T;
+        imageAlt?: T;
+      };
+  reception?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        timeRange?: T;
+        image?: T;
+        imageAlt?: T;
       };
   id?: T;
   blockName?: T;
@@ -1121,6 +1479,93 @@ export interface FormBlockSelect<T extends boolean = true> {
   form?: T;
   enableIntro?: T;
   introContent?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "HeroCarouselBlock_select".
+ */
+export interface HeroCarouselBlockSelect<T extends boolean = true> {
+  title?: T;
+  subtitle?: T;
+  description?: T;
+  images?:
+    | T
+    | {
+        image?: T;
+        id?: T;
+      };
+  primaryButton?:
+    | T
+    | {
+        link?:
+          | T
+          | {
+              type?: T;
+              newTab?: T;
+              reference?: T;
+              url?: T;
+              label?: T;
+              appearance?: T;
+            };
+      };
+  secondaryButton?:
+    | T
+    | {
+        link?:
+          | T
+          | {
+              type?: T;
+              newTab?: T;
+              reference?: T;
+              url?: T;
+              label?: T;
+              appearance?: T;
+            };
+      };
+  autoAdvance?: T;
+  autoAdvanceInterval?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "LoveStoryBlock_select".
+ */
+export interface LoveStoryBlockSelect<T extends boolean = true> {
+  sectionTitle?: T;
+  title?: T;
+  backgroundColor?: T;
+  backgroundImage?: T;
+  content?: T;
+  image?: T;
+  imageAlt?: T;
+  layout?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "WeddingDetailsBlock_select".
+ */
+export interface WeddingDetailsBlockSelect<T extends boolean = true> {
+  sectionTitle?: T;
+  subtitle?: T;
+  backgroundColor?: T;
+  backgroundImage?: T;
+  details?:
+    | T
+    | {
+        icon?: T;
+        title?: T;
+        subtitle?: T;
+        mainText?: T;
+        description?: T;
+        image?: T;
+        imageAlt?: T;
+        id?: T;
+      };
   id?: T;
   blockName?: T;
 }
