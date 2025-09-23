@@ -68,16 +68,15 @@ export interface Config {
   blocks: {};
   collections: {
     pages: Page;
-    posts: Post;
     media: Media;
-    categories: Category;
     users: User;
     'rsvp-guests': RsvpGuest;
     'rsvp-responses': RsvpResponse;
+    posts: Post;
+    categories: Category;
     redirects: Redirect;
     forms: Form;
     'form-submissions': FormSubmission;
-    search: Search;
     'payload-jobs': PayloadJob;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -86,16 +85,15 @@ export interface Config {
   collectionsJoins: {};
   collectionsSelect: {
     pages: PagesSelect<false> | PagesSelect<true>;
-    posts: PostsSelect<false> | PostsSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
-    categories: CategoriesSelect<false> | CategoriesSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
     'rsvp-guests': RsvpGuestsSelect<false> | RsvpGuestsSelect<true>;
     'rsvp-responses': RsvpResponsesSelect<false> | RsvpResponsesSelect<true>;
+    posts: PostsSelect<false> | PostsSelect<true>;
+    categories: CategoriesSelect<false> | CategoriesSelect<true>;
     redirects: RedirectsSelect<false> | RedirectsSelect<true>;
     forms: FormsSelect<false> | FormsSelect<true>;
     'form-submissions': FormSubmissionsSelect<false> | FormSubmissionsSelect<true>;
-    search: SearchSelect<false> | SearchSelect<true>;
     'payload-jobs': PayloadJobsSelect<false> | PayloadJobsSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -202,7 +200,6 @@ export interface Page {
     | ContentBlock
     | DressCodeBlock
     | MediaBlock
-    | ArchiveBlock
     | FormBlock
     | HeroCarouselBlock
     | LoveStoryBlock
@@ -372,15 +369,6 @@ export interface Category {
   title: string;
   slug?: string | null;
   slugLock?: boolean | null;
-  parent?: (string | null) | Category;
-  breadcrumbs?:
-    | {
-        doc?: (string | null) | Category;
-        url?: string | null;
-        label?: string | null;
-        id?: string | null;
-      }[]
-    | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -869,40 +857,6 @@ export interface MediaBlock {
   id?: string | null;
   blockName?: string | null;
   blockType: 'mediaBlock';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "ArchiveBlock".
- */
-export interface ArchiveBlock {
-  introContent?: {
-    root: {
-      type: string;
-      children: {
-        type: string;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  } | null;
-  populateBy?: ('collection' | 'selection') | null;
-  relationTo?: 'posts' | null;
-  categories?: (string | Category)[] | null;
-  limit?: number | null;
-  selectedDocs?:
-    | {
-        relationTo: 'posts';
-        value: string | Post;
-      }[]
-    | null;
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'archive';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1496,37 +1450,6 @@ export interface FormSubmission {
   createdAt: string;
 }
 /**
- * This is a collection of automatically created search results. These results are used by the global site search and will be updated automatically as documents in the CMS are created or updated.
- *
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "search".
- */
-export interface Search {
-  id: string;
-  title?: string | null;
-  priority?: number | null;
-  doc: {
-    relationTo: 'posts';
-    value: string | Post;
-  };
-  slug?: string | null;
-  meta?: {
-    title?: string | null;
-    description?: string | null;
-    image?: (string | null) | Media;
-  };
-  categories?:
-    | {
-        relationTo?: string | null;
-        categoryID?: string | null;
-        title?: string | null;
-        id?: string | null;
-      }[]
-    | null;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-jobs".
  */
@@ -1630,16 +1553,8 @@ export interface PayloadLockedDocument {
         value: string | Page;
       } | null)
     | ({
-        relationTo: 'posts';
-        value: string | Post;
-      } | null)
-    | ({
         relationTo: 'media';
         value: string | Media;
-      } | null)
-    | ({
-        relationTo: 'categories';
-        value: string | Category;
       } | null)
     | ({
         relationTo: 'users';
@@ -1654,6 +1569,14 @@ export interface PayloadLockedDocument {
         value: string | RsvpResponse;
       } | null)
     | ({
+        relationTo: 'posts';
+        value: string | Post;
+      } | null)
+    | ({
+        relationTo: 'categories';
+        value: string | Category;
+      } | null)
+    | ({
         relationTo: 'redirects';
         value: string | Redirect;
       } | null)
@@ -1664,10 +1587,6 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'form-submissions';
         value: string | FormSubmission;
-      } | null)
-    | ({
-        relationTo: 'search';
-        value: string | Search;
       } | null)
     | ({
         relationTo: 'payload-jobs';
@@ -1752,7 +1671,6 @@ export interface PagesSelect<T extends boolean = true> {
         content?: T | ContentBlockSelect<T>;
         dressCode?: T | DressCodeBlockSelect<T>;
         mediaBlock?: T | MediaBlockSelect<T>;
-        archive?: T | ArchiveBlockSelect<T>;
         formBlock?: T | FormBlockSelect<T>;
         heroCarousel?: T | HeroCarouselBlockSelect<T>;
         loveStory?: T | LoveStoryBlockSelect<T>;
@@ -1926,20 +1844,6 @@ export interface MediaBlockSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "ArchiveBlock_select".
- */
-export interface ArchiveBlockSelect<T extends boolean = true> {
-  introContent?: T;
-  populateBy?: T;
-  relationTo?: T;
-  categories?: T;
-  limit?: T;
-  selectedDocs?: T;
-  id?: T;
-  blockName?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "FormBlock_select".
  */
 export interface FormBlockSelect<T extends boolean = true> {
@@ -2054,37 +1958,6 @@ export interface WeddingDetailsBlockSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "posts_select".
- */
-export interface PostsSelect<T extends boolean = true> {
-  title?: T;
-  heroImage?: T;
-  content?: T;
-  relatedPosts?: T;
-  categories?: T;
-  meta?:
-    | T
-    | {
-        title?: T;
-        image?: T;
-        description?: T;
-      };
-  publishedAt?: T;
-  authors?: T;
-  populatedAuthors?:
-    | T
-    | {
-        id?: T;
-        name?: T;
-      };
-  slug?: T;
-  slugLock?: T;
-  updatedAt?: T;
-  createdAt?: T;
-  _status?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "media_select".
  */
 export interface MediaSelect<T extends boolean = true> {
@@ -2178,26 +2051,6 @@ export interface MediaSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "categories_select".
- */
-export interface CategoriesSelect<T extends boolean = true> {
-  title?: T;
-  slug?: T;
-  slugLock?: T;
-  parent?: T;
-  breadcrumbs?:
-    | T
-    | {
-        doc?: T;
-        url?: T;
-        label?: T;
-        id?: T;
-      };
-  updatedAt?: T;
-  createdAt?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "users_select".
  */
 export interface UsersSelect<T extends boolean = true> {
@@ -2245,6 +2098,48 @@ export interface RsvpResponsesSelect<T extends boolean = true> {
   message?: T;
   submittedAt?: T;
   contactEmail?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "posts_select".
+ */
+export interface PostsSelect<T extends boolean = true> {
+  title?: T;
+  heroImage?: T;
+  content?: T;
+  relatedPosts?: T;
+  categories?: T;
+  meta?:
+    | T
+    | {
+        title?: T;
+        image?: T;
+        description?: T;
+      };
+  publishedAt?: T;
+  authors?: T;
+  populatedAuthors?:
+    | T
+    | {
+        id?: T;
+        name?: T;
+      };
+  slug?: T;
+  slugLock?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  _status?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "categories_select".
+ */
+export interface CategoriesSelect<T extends boolean = true> {
+  title?: T;
+  slug?: T;
+  slugLock?: T;
   updatedAt?: T;
   createdAt?: T;
 }
@@ -2408,33 +2303,6 @@ export interface FormSubmissionsSelect<T extends boolean = true> {
     | {
         field?: T;
         value?: T;
-        id?: T;
-      };
-  updatedAt?: T;
-  createdAt?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "search_select".
- */
-export interface SearchSelect<T extends boolean = true> {
-  title?: T;
-  priority?: T;
-  doc?: T;
-  slug?: T;
-  meta?:
-    | T
-    | {
-        title?: T;
-        description?: T;
-        image?: T;
-      };
-  categories?:
-    | T
-    | {
-        relationTo?: T;
-        categoryID?: T;
-        title?: T;
         id?: T;
       };
   updatedAt?: T;

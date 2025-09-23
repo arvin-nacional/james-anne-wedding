@@ -2,7 +2,6 @@ import React, { Fragment } from 'react'
 
 import type { Page } from '@/payload-types'
 
-import { ArchiveBlock } from '@/blocks/ArchiveBlock/Component'
 import { CallToActionBlock } from '@/blocks/CallToAction/Component'
 import { CeremonyReceptionBlock } from '@/blocks/CeremonyReception/Component'
 import { ContentBlock } from '@/blocks/Content/Component'
@@ -16,7 +15,6 @@ import { ContactBlock } from '@/blocks/Contact/Component'
 import { WeddingDetailsBlock } from '@/blocks/WeddingDetails/Component'
 
 const blockComponents = {
-  archive: ArchiveBlock,
   ceremonyReception: CeremonyReceptionBlock,
   content: ContentBlock,
   cta: CallToActionBlock,
@@ -43,7 +41,6 @@ const blockToSectionId = {
   content: 'content',
   mediaBlock: 'media',
   formBlock: 'form',
-  archive: 'archive',
 }
 
 export const RenderBlocks: React.FC<{

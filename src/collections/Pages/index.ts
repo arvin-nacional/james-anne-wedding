@@ -89,7 +89,6 @@ export const Pages: CollectionConfig<'pages'> = {
                 Content,
                 DressCode,
                 MediaBlock,
-                Archive,
                 FormBlock,
                 HeroCarousel,
                 LoveStory,
