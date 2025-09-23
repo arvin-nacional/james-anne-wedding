@@ -6,6 +6,7 @@ import { Heart } from 'lucide-react'
 import type { LoveStoryBlock as LoveStoryBlockProps } from '@/payload-types'
 import RichText from '@/components/RichText'
 import { Media } from '@/components/Media'
+import { ParallaxWrapper } from '@/components/ParallaxWrapper'
 
 export const LoveStoryBlock: React.FC<LoveStoryBlockProps> = ({
   sectionTitle = 'Our Love Story',

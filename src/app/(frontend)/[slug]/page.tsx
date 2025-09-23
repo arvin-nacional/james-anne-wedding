@@ -64,19 +64,27 @@ export default async function Page({ params: paramsPromise }: Args) {
   }
 
   const { hero, layout } = page
+  const isHomePage = slug === 'home'
+  const hasHeroCarousel = layout && layout.length > 0 && layout[0]?.blockType === 'heroCarousel'
 
   return (
-    <article className="pb-24">
+    <article>
       <PageClient />
       {/* Allows redirects for valid pages too */}
       <PayloadRedirects disableNotFound url={url} />
 
       {draft && <LivePreviewListener />}
 
-      {/* Add spacing for fixed header only if first block is not a hero */}
-      {layout && layout.length > 0 && layout[0]?.blockType !== 'heroCarousel' && (
-        <div className="h-24" />
-      )}
+      {/* Add spacing for fixed header */}
+      {(() => {
+        // Home page with hero carousel: no spacing (transparent header)
+        if (isHomePage && hasHeroCarousel) {
+          return null
+        }
+        // Home page without hero carousel: add spacing
+        // Non-home pages: always add spacing (black header)
+        return <div className="h-24" />
+      })()}
 
       <RenderHero {...hero} />
       <RenderBlocks blocks={layout} />

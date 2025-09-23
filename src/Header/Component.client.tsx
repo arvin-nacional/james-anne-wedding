@@ -20,6 +20,7 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
   const [adminBarHeight, setAdminBarHeight] = useState(0)
   const { headerTheme, setHeaderTheme } = useHeaderTheme()
   const pathname = usePathname()
+  const isHomePage = pathname === '/'
 
   useEffect(() => {
     setHeaderTheme(null)
@@ -76,22 +77,27 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
     }
   }, [])
 
+  // Determine background based on page and scroll state
+  const getHeaderBackground = () => {
+    if (isHomePage) {
+      // On home page: transparent until scrolled
+      return isScrolled ? 'bg-black' : 'bg-transparent'
+    } else {
+      // On other pages: always black
+      return 'bg-black'
+    }
+  }
+
   return (
     <header
-      className={`fixed left-0 right-0 z-40 transition-all duration-300 ${
-        isScrolled ? 'bg-white/10 backdrop-blur-md border-b border-white/20' : 'bg-transparent'
-      }`}
+      className={`fixed left-0 right-0 z-40 transition-all duration-300 ${getHeaderBackground()}`}
       style={{ top: `${adminBarHeight}px` }}
       {...(theme ? { 'data-theme': theme } : {})}
     >
       <div className="container mx-auto px-4">
         <div className="py-4 flex justify-between items-center">
           <Link href="/">
-            <Logo
-              loading="eager"
-              priority="high"
-              className="text-white filter brightness-0 invert"
-            />
+            <Logo className="text-white filter brightness-0 invert" />
           </Link>
           <HeaderNav data={data} />
         </div>

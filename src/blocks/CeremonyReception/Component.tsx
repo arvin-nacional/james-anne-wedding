@@ -6,6 +6,7 @@ import { Clock } from 'lucide-react'
 import type { CeremonyReceptionBlock as CeremonyReceptionBlockProps } from '@/payload-types'
 import { Media } from '@/components/Media'
 import RichText from '@/components/RichText'
+import { ParallaxWrapper } from '@/components/ParallaxWrapper'
 
 export const CeremonyReceptionBlock: React.FC<CeremonyReceptionBlockProps> = ({
   backgroundColor = 'transparent',

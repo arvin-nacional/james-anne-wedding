@@ -6,6 +6,7 @@ import { Heart, ChevronLeft, ChevronRight } from 'lucide-react'
 import type { HeroCarouselBlock as HeroCarouselBlockProps } from '@/payload-types'
 import { CMSLink } from '@/components/Link'
 import RichText from '@/components/RichText'
+import { ParallaxWrapper } from '@/components/ParallaxWrapper'
 
 export const HeroCarouselBlock: React.FC<HeroCarouselBlockProps> = ({
   title,

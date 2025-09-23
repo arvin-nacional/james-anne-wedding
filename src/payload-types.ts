@@ -72,6 +72,8 @@ export interface Config {
     media: Media;
     categories: Category;
     users: User;
+    'rsvp-guests': RsvpGuest;
+    'rsvp-responses': RsvpResponse;
     redirects: Redirect;
     forms: Form;
     'form-submissions': FormSubmission;
@@ -88,6 +90,8 @@ export interface Config {
     media: MediaSelect<false> | MediaSelect<true>;
     categories: CategoriesSelect<false> | CategoriesSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
+    'rsvp-guests': RsvpGuestsSelect<false> | RsvpGuestsSelect<true>;
+    'rsvp-responses': RsvpResponsesSelect<false> | RsvpResponsesSelect<true>;
     redirects: RedirectsSelect<false> | RedirectsSelect<true>;
     forms: FormsSelect<false> | FormsSelect<true>;
     'form-submissions': FormSubmissionsSelect<false> | FormSubmissionsSelect<true>;
@@ -194,12 +198,15 @@ export interface Page {
   layout: (
     | CallToActionBlock
     | CeremonyReceptionBlock
+    | ContactBlock
     | ContentBlock
+    | DressCodeBlock
     | MediaBlock
     | ArchiveBlock
     | FormBlock
     | HeroCarouselBlock
     | LoveStoryBlock
+    | RSVPBlock
     | WeddingDetailsBlock
   )[];
   meta?: {
@@ -543,6 +550,49 @@ export interface CeremonyReceptionBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ContactBlock".
+ */
+export interface ContactBlock {
+  /**
+   * Main section title
+   */
+  sectionTitle?: string | null;
+  /**
+   * Description text for the contact section
+   */
+  description: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  /**
+   * Contact email address
+   */
+  email?: string | null;
+  /**
+   * Contact phone number (e.g., "(123) 456-7890")
+   */
+  phone?: string | null;
+  /**
+   * Choose the background style for this section
+   */
+  backgroundColor?: ('light' | 'lightGreen' | 'transparent' | 'dark') | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'contact';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "ContentBlock".
  */
 export interface ContentBlock {
@@ -590,6 +640,225 @@ export interface ContentBlock {
   id?: string | null;
   blockName?: string | null;
   blockType: 'content';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "DressCodeBlock".
+ */
+export interface DressCodeBlock {
+  sectionTitle?: string | null;
+  /**
+   * Optional description about the dress code
+   */
+  description?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  dressCodeType?:
+    | ('casual' | 'cocktail' | 'semiformal' | 'formal' | 'blacktie' | 'whitetie' | 'beachformal' | 'gardenparty')
+    | null;
+  groomsmenAttire?: {
+    /**
+     * Detailed guidelines for groomsmen attire
+     */
+    guidelines?: {
+      root: {
+        type: string;
+        children: {
+          type: string;
+          version: number;
+          [k: string]: unknown;
+        }[];
+        direction: ('ltr' | 'rtl') | null;
+        format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+        indent: number;
+        version: number;
+      };
+      [k: string]: unknown;
+    } | null;
+    /**
+     * Reference image for groomsmen attire
+     */
+    referenceImage?: (string | null) | Media;
+  };
+  bridesmaidsAttire?: {
+    /**
+     * Detailed guidelines for bridesmaids attire
+     */
+    guidelines?: {
+      root: {
+        type: string;
+        children: {
+          type: string;
+          version: number;
+          [k: string]: unknown;
+        }[];
+        direction: ('ltr' | 'rtl') | null;
+        format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+        indent: number;
+        version: number;
+      };
+      [k: string]: unknown;
+    } | null;
+    /**
+     * Reference image for bridesmaids attire
+     */
+    referenceImage?: (string | null) | Media;
+  };
+  menAttire?: {
+    /**
+     * Detailed guidelines for male guests' attire
+     */
+    guidelines?: {
+      root: {
+        type: string;
+        children: {
+          type: string;
+          version: number;
+          [k: string]: unknown;
+        }[];
+        direction: ('ltr' | 'rtl') | null;
+        format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+        indent: number;
+        version: number;
+      };
+      [k: string]: unknown;
+    } | null;
+    /**
+     * Reference image for men's guest attire
+     */
+    referenceImage?: (string | null) | Media;
+  };
+  womenAttire?: {
+    /**
+     * Detailed guidelines for female guests' attire
+     */
+    guidelines?: {
+      root: {
+        type: string;
+        children: {
+          type: string;
+          version: number;
+          [k: string]: unknown;
+        }[];
+        direction: ('ltr' | 'rtl') | null;
+        format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+        indent: number;
+        version: number;
+      };
+      [k: string]: unknown;
+    } | null;
+    /**
+     * Reference image for women's guest attire
+     */
+    referenceImage?: (string | null) | Media;
+  };
+  sponsorsAttire?: {
+    /**
+     * Detailed guidelines for sponsors attire
+     */
+    guidelines?: {
+      root: {
+        type: string;
+        children: {
+          type: string;
+          version: number;
+          [k: string]: unknown;
+        }[];
+        direction: ('ltr' | 'rtl') | null;
+        format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+        indent: number;
+        version: number;
+      };
+      [k: string]: unknown;
+    } | null;
+    /**
+     * Reference image for sponsors attire
+     */
+    referenceImage?: (string | null) | Media;
+  };
+  /**
+   * Colors that complement the wedding theme
+   */
+  colorPalette?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  /**
+   * Colors guests should avoid wearing
+   */
+  avoidColors?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  /**
+   * Any additional information or special considerations
+   */
+  additionalNotes?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  /**
+   * Gallery of style inspiration images for guests
+   */
+  showcaseImages?:
+    | {
+        image: string | Media;
+        /**
+         * Optional caption for the image
+         */
+        caption?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  backgroundColor?: ('light' | 'lightGreen' | 'dark' | 'transparent' | 'gradient') | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'dressCode';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -990,6 +1259,61 @@ export interface LoveStoryBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "RSVPBlock".
+ */
+export interface RSVPBlock {
+  /**
+   * Main section title
+   */
+  sectionTitle?: string | null;
+  /**
+   * Description text for the RSVP section
+   */
+  description: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  /**
+   * Optional image for the RSVP section (e.g., wedding invitation)
+   */
+  image?: (string | null) | Media;
+  /**
+   * Alt text for the image (for accessibility)
+   */
+  imageAlt?: string | null;
+  /**
+   * Text for the RSVP button
+   */
+  buttonText: string;
+  /**
+   * Link for the RSVP button (e.g., "/rsvp" or external URL)
+   */
+  buttonLink: string;
+  /**
+   * Optional deadline text (e.g., "Please respond by May 1st, 2024")
+   */
+  deadlineText?: string | null;
+  /**
+   * Choose the background style for this section
+   */
+  backgroundColor?: ('gradient' | 'transparent' | 'light' | 'lightGreen' | 'dark') | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'rsvp';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "WeddingDetailsBlock".
  */
 export interface WeddingDetailsBlock {
@@ -1060,6 +1384,73 @@ export interface WeddingDetailsBlock {
   id?: string | null;
   blockName?: string | null;
   blockType: 'weddingDetails';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "rsvp-guests".
+ */
+export interface RsvpGuest {
+  id: string;
+  /**
+   * The full name of the guest as it appears on the invitation
+   */
+  fullName: string;
+  /**
+   * Optional email address for the guest
+   */
+  email?: string | null;
+  /**
+   * Number of people in this guest's party (including the guest)
+   */
+  partySize: number;
+  /**
+   * Whether this guest is currently invited to the wedding
+   */
+  isInvited?: boolean | null;
+  /**
+   * Any additional notes about this guest (dietary restrictions, etc.)
+   */
+  notes?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "rsvp-responses".
+ */
+export interface RsvpResponse {
+  id: string;
+  /**
+   * The guest this response is for
+   */
+  guest: string | RsvpGuest;
+  /**
+   * Name of the guest (copied from guest record for easier display)
+   */
+  guestName: string;
+  response: 'attending' | 'not_attending';
+  /**
+   * How many people from their party will be attending
+   */
+  attendingCount?: number | null;
+  /**
+   * Any dietary restrictions or special requests
+   */
+  dietaryRestrictions?: string | null;
+  /**
+   * Optional message from the guest
+   */
+  message?: string | null;
+  /**
+   * When this RSVP was submitted
+   */
+  submittedAt: string;
+  /**
+   * Email address provided by the guest
+   */
+  contactEmail?: string | null;
+  updatedAt: string;
+  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1255,6 +1646,14 @@ export interface PayloadLockedDocument {
         value: string | User;
       } | null)
     | ({
+        relationTo: 'rsvp-guests';
+        value: string | RsvpGuest;
+      } | null)
+    | ({
+        relationTo: 'rsvp-responses';
+        value: string | RsvpResponse;
+      } | null)
+    | ({
         relationTo: 'redirects';
         value: string | Redirect;
       } | null)
@@ -1349,12 +1748,15 @@ export interface PagesSelect<T extends boolean = true> {
     | {
         cta?: T | CallToActionBlockSelect<T>;
         ceremonyReception?: T | CeremonyReceptionBlockSelect<T>;
+        contact?: T | ContactBlockSelect<T>;
         content?: T | ContentBlockSelect<T>;
+        dressCode?: T | DressCodeBlockSelect<T>;
         mediaBlock?: T | MediaBlockSelect<T>;
         archive?: T | ArchiveBlockSelect<T>;
         formBlock?: T | FormBlockSelect<T>;
         heroCarousel?: T | HeroCarouselBlockSelect<T>;
         loveStory?: T | LoveStoryBlockSelect<T>;
+        rsvp?: T | RSVPBlockSelect<T>;
         weddingDetails?: T | WeddingDetailsBlockSelect<T>;
       };
   meta?:
@@ -1424,6 +1826,19 @@ export interface CeremonyReceptionBlockSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ContactBlock_select".
+ */
+export interface ContactBlockSelect<T extends boolean = true> {
+  sectionTitle?: T;
+  description?: T;
+  email?: T;
+  phone?: T;
+  backgroundColor?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "ContentBlock_select".
  */
 export interface ContentBlockSelect<T extends boolean = true> {
@@ -1445,6 +1860,58 @@ export interface ContentBlockSelect<T extends boolean = true> {
             };
         id?: T;
       };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "DressCodeBlock_select".
+ */
+export interface DressCodeBlockSelect<T extends boolean = true> {
+  sectionTitle?: T;
+  description?: T;
+  dressCodeType?: T;
+  groomsmenAttire?:
+    | T
+    | {
+        guidelines?: T;
+        referenceImage?: T;
+      };
+  bridesmaidsAttire?:
+    | T
+    | {
+        guidelines?: T;
+        referenceImage?: T;
+      };
+  menAttire?:
+    | T
+    | {
+        guidelines?: T;
+        referenceImage?: T;
+      };
+  womenAttire?:
+    | T
+    | {
+        guidelines?: T;
+        referenceImage?: T;
+      };
+  sponsorsAttire?:
+    | T
+    | {
+        guidelines?: T;
+        referenceImage?: T;
+      };
+  colorPalette?: T;
+  avoidColors?: T;
+  additionalNotes?: T;
+  showcaseImages?:
+    | T
+    | {
+        image?: T;
+        caption?: T;
+        id?: T;
+      };
+  backgroundColor?: T;
   id?: T;
   blockName?: T;
 }
@@ -1542,6 +2009,22 @@ export interface LoveStoryBlockSelect<T extends boolean = true> {
   image?: T;
   imageAlt?: T;
   layout?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "RSVPBlock_select".
+ */
+export interface RSVPBlockSelect<T extends boolean = true> {
+  sectionTitle?: T;
+  description?: T;
+  image?: T;
+  imageAlt?: T;
+  buttonText?: T;
+  buttonLink?: T;
+  deadlineText?: T;
+  backgroundColor?: T;
   id?: T;
   blockName?: T;
 }
@@ -1735,6 +2218,35 @@ export interface UsersSelect<T extends boolean = true> {
         createdAt?: T;
         expiresAt?: T;
       };
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "rsvp-guests_select".
+ */
+export interface RsvpGuestsSelect<T extends boolean = true> {
+  fullName?: T;
+  email?: T;
+  partySize?: T;
+  isInvited?: T;
+  notes?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "rsvp-responses_select".
+ */
+export interface RsvpResponsesSelect<T extends boolean = true> {
+  guest?: T;
+  guestName?: T;
+  response?: T;
+  attendingCount?: T;
+  dietaryRestrictions?: T;
+  message?: T;
+  submittedAt?: T;
+  contactEmail?: T;
+  updatedAt?: T;
+  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

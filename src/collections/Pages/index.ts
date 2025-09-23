@@ -5,11 +5,14 @@ import { authenticatedOrPublished } from '../../access/authenticatedOrPublished'
 import { Archive } from '../../blocks/ArchiveBlock/config'
 import { CallToAction } from '../../blocks/CallToAction/config'
 import { CeremonyReception } from '../../blocks/CeremonyReception/config'
+import { Contact } from '../../blocks/Contact/config'
 import { Content } from '../../blocks/Content/config'
+import { DressCode } from '../../blocks/DressCode/config'
 import { FormBlock } from '../../blocks/Form/config'
 import { HeroCarousel } from '../../blocks/HeroCarousel/config'
 import { LoveStory } from '../../blocks/LoveStory/config'
 import { MediaBlock } from '../../blocks/MediaBlock/config'
+import { RSVP } from '../../blocks/RSVP/config'
 import { WeddingDetails } from '../../blocks/WeddingDetails/config'
 import { hero } from '@/heros/config'
 import { slugField } from '@/fields/slug'
@@ -82,12 +85,15 @@ export const Pages: CollectionConfig<'pages'> = {
               blocks: [
                 CallToAction,
                 CeremonyReception,
+                Contact,
                 Content,
+                DressCode,
                 MediaBlock,
                 Archive,
                 FormBlock,
                 HeroCarousel,
                 LoveStory,
+                RSVP,
                 WeddingDetails,
               ],
               required: true,
