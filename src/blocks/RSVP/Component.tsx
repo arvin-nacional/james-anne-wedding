@@ -177,7 +177,7 @@ export const RSVPBlock: React.FC<RSVPBlockProps> = ({
           </div>
           <h2 className={`text-4xl font-serif mb-6 ${textColor}`}>Thank You!</h2>
           <p className={`text-xl mb-8 ${subTextColor}`}>
-            Your RSVP has been received. We're{' '}
+            Your RSVP has been received. We&apos;re{' '}
             {response === 'attending' ? 'excited to celebrate with you' : "sorry you can't make it"}
             .
           </p>

@@ -125,7 +125,7 @@ export const DressCodeBlock: React.FC<DressCodeBlockProps> = ({
             <div
               className={`${cardBgColor} rounded-lg p-6 border ${borderColor} shadow-lg text-center`}
             >
-              <h3 className={`text-2xl font-semibold ${textColor} mb-6`}>Men's Attire</h3>
+              <h3 className={`text-2xl font-semibold ${textColor} mb-6`}>Men&apos;s Attire</h3>
               <div className="overflow-hidden rounded-lg">
                 <Media
                   resource={menAttire.referenceImage}
@@ -141,7 +141,7 @@ export const DressCodeBlock: React.FC<DressCodeBlockProps> = ({
             <div
               className={`${cardBgColor} rounded-lg p-6 border ${borderColor} shadow-lg text-center`}
             >
-              <h3 className={`text-2xl font-semibold ${textColor} mb-6`}>Women's Attire</h3>
+              <h3 className={`text-2xl font-semibold ${textColor} mb-6`}>Women&apos;s Attire</h3>
               <div className="overflow-hidden rounded-lg">
                 <Media
                   resource={womenAttire.referenceImage}
