@@ -359,7 +359,7 @@ export const RSVPBlock: React.FC<RSVPBlockProps> = ({
                     }`}
                   >
                     <X className="w-5 h-5 mr-2" />
-                    Sorry, can't make it
+                    Sorry, can&apos;t make it
                   </Button>
                 </div>
               </div>

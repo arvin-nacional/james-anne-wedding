@@ -150,7 +150,7 @@ export const RSVPForm: React.FC<RSVPFormProps> = ({ className = '' }) => {
           </div>
           <h2 className="text-3xl font-serif text-gray-800 mb-4">Thank You!</h2>
           <p className="text-lg text-gray-600 mb-6">
-            Your RSVP has been received. We're{' '}
+            Your RSVP has been received. We&apos;re{' '}
             {response === 'attending' ? 'excited to celebrate with you' : "sorry you can't make it"}
             .
           </p>
