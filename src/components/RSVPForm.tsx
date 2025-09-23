@@ -241,7 +241,7 @@ export const RSVPForm: React.FC<RSVPFormProps> = ({ className = '' }) => {
                 ))}
               </div>
               <p className="text-sm text-gray-600 mt-4">
-                Don't see your name? Try searching with your full name as it appears on the
+                Don&apos;t see your name? Try searching with your full name as it appears on the
                 invitation.
               </p>
             </div>
@@ -293,7 +293,7 @@ export const RSVPForm: React.FC<RSVPFormProps> = ({ className = '' }) => {
                 }`}
               >
                 <Check className="w-5 h-5 mr-2" />
-                Yes, I'll be there!
+                Yes, I&apos;ll be there!
               </Button>
               <Button
                 variant={response === 'not_attending' ? 'default' : 'outline'}
@@ -305,7 +305,7 @@ export const RSVPForm: React.FC<RSVPFormProps> = ({ className = '' }) => {
                 }`}
               >
                 <X className="w-5 h-5 mr-2" />
-                Sorry, can't make it
+                Sorry, can&apos;t make it
               </Button>
             </div>
           </div>
