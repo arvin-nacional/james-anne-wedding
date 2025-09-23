@@ -17,47 +17,94 @@ export default async function Page({ searchParams: searchParamsPromise }: Args) 
   const { q: query } = await searchParamsPromise
   const payload = await getPayload({ config: configPromise })
 
-  const posts = await payload.find({
-    collection: 'search',
-    depth: 1,
-    limit: 12,
-    select: {
-      title: true,
-      slug: true,
-      categories: true,
-      meta: true,
-    },
-    // pagination: false reduces overhead if you don't need totalDocs
-    pagination: false,
-    ...(query
-      ? {
-          where: {
-            or: [
-              {
-                title: {
-                  like: query,
+  // Search both Pages and Posts collections
+  const [pages, posts] = await Promise.all([
+    // Search Pages collection
+    payload.find({
+      collection: 'pages',
+      depth: 1,
+      limit: 6,
+      select: {
+        title: true,
+        slug: true,
+        meta: true,
+      },
+      pagination: false,
+      ...(query
+        ? {
+            where: {
+              or: [
+                {
+                  title: {
+                    like: query,
+                  },
                 },
-              },
-              {
-                'meta.description': {
-                  like: query,
+                {
+                  'meta.description': {
+                    like: query,
+                  },
                 },
-              },
-              {
-                'meta.title': {
-                  like: query,
+                {
+                  'meta.title': {
+                    like: query,
+                  },
                 },
-              },
-              {
-                slug: {
-                  like: query,
+                {
+                  slug: {
+                    like: query,
+                  },
                 },
-              },
-            ],
-          },
-        }
-      : {}),
-  })
+              ],
+            },
+          }
+        : {}),
+    }),
+    // Search Posts collection
+    payload.find({
+      collection: 'posts',
+      depth: 1,
+      limit: 6,
+      select: {
+        title: true,
+        slug: true,
+        categories: true,
+        meta: true,
+      },
+      pagination: false,
+      ...(query
+        ? {
+            where: {
+              or: [
+                {
+                  title: {
+                    like: query,
+                  },
+                },
+                {
+                  'meta.description': {
+                    like: query,
+                  },
+                },
+                {
+                  'meta.title': {
+                    like: query,
+                  },
+                },
+                {
+                  slug: {
+                    like: query,
+                  },
+                },
+              ],
+            },
+          }
+        : {}),
+    }),
+  ])
+
+  // Combine results from both collections
+  const combinedResults = [...pages.docs, ...posts.docs]
+  const totalDocs = combinedResults.length
 
   return (
     <div className="pt-24 pb-24">
@@ -72,8 +119,8 @@ export default async function Page({ searchParams: searchParamsPromise }: Args) 
         </div>
       </div>
 
-      {posts.totalDocs > 0 ? (
-        <CollectionArchive posts={posts.docs as CardPostData[]} />
+      {totalDocs > 0 ? (
+        <CollectionArchive posts={combinedResults as CardPostData[]} />
       ) : (
         <div className="container">No results found.</div>
       )}
@@ -83,6 +130,6 @@ export default async function Page({ searchParams: searchParamsPromise }: Args) 
 
 export function generateMetadata(): Metadata {
   return {
-    title: `Payload Website Template Search`,
+    title: `James & Anne Wedding Search`,
   }
 }
