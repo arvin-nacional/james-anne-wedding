@@ -93,7 +93,7 @@ export const HeroCarouselBlock: React.FC<HeroCarouselBlockProps> = ({
           <button
             type="button"
             onClick={prevImage}
-            className="absolute left-4 top-1/2 -translate-y-1/2 z-30 bg-white/20 hover:bg-white/30 backdrop-blur-sm rounded-full p-3 transition-colors"
+            className="absolute left-4 top-1/2 -translate-y-1/2 z-30 bg-white/20 hover:bg-white/30 backdrop-blur-sm rounded-full p-3 transition-colors hidden md:block"
             aria-label="Previous image"
           >
             <ChevronLeft className="w-6 h-6 text-white" />
@@ -101,7 +101,7 @@ export const HeroCarouselBlock: React.FC<HeroCarouselBlockProps> = ({
           <button
             type="button"
             onClick={nextImage}
-            className="absolute right-4 top-1/2 -translate-y-1/2 z-30 bg-white/20 hover:bg-white/30 backdrop-blur-sm rounded-full p-3 transition-colors"
+            className="absolute right-4 top-1/2 -translate-y-1/2 z-30 bg-white/20 hover:bg-white/30 backdrop-blur-sm rounded-full p-3 transition-colors hidden md:block"
             aria-label="Next image"
           >
             <ChevronRight className="w-6 h-6 text-white" />
