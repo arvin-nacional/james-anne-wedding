@@ -53,7 +53,7 @@ export const LoveStoryBlock: React.FC<LoveStoryBlockProps> = ({
           <div
             className={`flex flex-col justify-center ${layout === 'imageLeft' ? 'lg:col-start-2' : ''}`}
           >
-            <div className="flex items-center gap-3 mb-6">
+            <div className="flex items-center gap-3 mb-6 justify-center lg:justify-start">
               <div
                 className={`w-12 h-px ${backgroundColor === 'image' ? 'bg-white/50' : 'bg-emerald-300'}`}
               ></div>
@@ -67,7 +67,7 @@ export const LoveStoryBlock: React.FC<LoveStoryBlockProps> = ({
 
             {sectionTitle && (
               <h2
-                className={`text-4xl font-serif mb-6 ${backgroundColor === 'image' ? 'text-white drop-shadow-lg' : backgroundColor === 'dark' ? 'text-white' : 'text-gray-800'}`}
+                className={`text-4xl font-serif mb-6 text-center lg:text-left ${backgroundColor === 'image' ? 'text-white drop-shadow-lg' : backgroundColor === 'dark' ? 'text-white' : 'text-gray-800'}`}
               >
                 {sectionTitle}
               </h2>
@@ -75,7 +75,7 @@ export const LoveStoryBlock: React.FC<LoveStoryBlockProps> = ({
 
             {title && (
               <h3
-                className={`text-2xl font-serif mb-4 ${backgroundColor === 'image' ? 'text-white/90 drop-shadow-md' : backgroundColor === 'dark' ? 'text-gray-200' : 'text-gray-700'}`}
+                className={`text-2xl font-serif mb-4 text-center lg:text-left ${backgroundColor === 'image' ? 'text-white/90 drop-shadow-md' : backgroundColor === 'dark' ? 'text-gray-200' : 'text-gray-700'}`}
               >
                 {title}
               </h3>
@@ -83,7 +83,7 @@ export const LoveStoryBlock: React.FC<LoveStoryBlockProps> = ({
 
             {content && (
               <div
-                className={`leading-relaxed space-y-4 ${backgroundColor === 'image' ? 'text-white/80 drop-shadow-sm' : backgroundColor === 'dark' ? 'text-gray-300' : 'text-gray-600'}`}
+                className={`leading-relaxed space-y-4 text-center lg:text-left ${backgroundColor === 'image' ? 'text-white/80 drop-shadow-sm' : backgroundColor === 'dark' ? 'text-gray-300' : 'text-gray-600'}`}
               >
                 <RichText data={content} enableGutter={false} />
               </div>

@@ -34,7 +34,7 @@ export const CeremonyReceptionBlock: React.FC<CeremonyReceptionBlockProps> = ({
                   <Media
                     resource={ceremony.image}
                     alt={ceremony.imageAlt || 'Wedding ceremony'}
-                    className="rounded-lg shadow-xl w-full h-[400px] object-cover transition-transform duration-500 group-hover:scale-105"
+                    className="rounded-lg shadow-xl w-full h-[400px] object-cover transition-transform duration-500 group-hover:scale-105 max-sm:mb-[-50px]"
                   />
                 </div>
               )}
@@ -62,11 +62,11 @@ export const CeremonyReceptionBlock: React.FC<CeremonyReceptionBlockProps> = ({
           {reception && (
             <div className="text-center lg:text-right group">
               {reception.image && (
-                <div className="mb-8 overflow-hidden rounded-lg">
+                <div className="mb-4 lg:mb-8 overflow-hidden rounded-lg">
                   <Media
                     resource={reception.image}
                     alt={reception.imageAlt || 'Wedding reception'}
-                    className="rounded-lg shadow-xl w-full h-[400px] object-cover transition-transform duration-500 group-hover:scale-105"
+                    className="rounded-lg shadow-xl w-full h-[400px] object-cover transition-transform duration-500 group-hover:scale-105 max-sm:mb-[-50px]"
                   />
                 </div>
               )}
