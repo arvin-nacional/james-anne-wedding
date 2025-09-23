@@ -20,16 +20,16 @@ export const home: (args: HomeArgs) => RequiredDataFromCollectionSlug<'pages'> =
           link: {
             type: 'custom',
             appearance: 'default',
-            label: 'All posts',
-            url: '/posts',
+            label: 'Our Story',
+            url: '/our-story',
           },
         },
         {
           link: {
             type: 'custom',
             appearance: 'outline',
-            label: 'Contact',
-            url: '/contact',
+            label: 'RSVP',
+            url: '/rsvp',
           },
         },
       ],
@@ -47,7 +47,7 @@ export const home: (args: HomeArgs) => RequiredDataFromCollectionSlug<'pages'> =
                   format: 0,
                   mode: 'normal',
                   style: '',
-                  text: 'Payload Website Template',
+                  text: 'James & Anne',
                   version: 1,
                 },
               ],
@@ -61,67 +61,12 @@ export const home: (args: HomeArgs) => RequiredDataFromCollectionSlug<'pages'> =
               type: 'paragraph',
               children: [
                 {
-                  type: 'link',
-                  children: [
-                    {
-                      type: 'text',
-                      detail: 0,
-                      format: 0,
-                      mode: 'normal',
-                      style: '',
-                      text: 'Visit the admin dashboard',
-                      version: 1,
-                    },
-                  ],
-                  direction: 'ltr',
-                  fields: {
-                    linkType: 'custom',
-                    newTab: false,
-                    url: '/admin',
-                  },
-                  format: '',
-                  indent: 0,
-                  version: 3,
-                },
-                {
                   type: 'text',
                   detail: 0,
                   format: 0,
                   mode: 'normal',
                   style: '',
-                  text: " to begin managing this site's content. The code for this template is completely open-source and can be found ",
-                  version: 1,
-                },
-                {
-                  type: 'link',
-                  children: [
-                    {
-                      type: 'text',
-                      detail: 0,
-                      format: 0,
-                      mode: 'normal',
-                      style: '',
-                      text: 'on our Github',
-                      version: 1,
-                    },
-                  ],
-                  direction: 'ltr',
-                  fields: {
-                    linkType: 'custom',
-                    newTab: true,
-                    url: 'https://github.com/payloadcms/payload/tree/main/templates/website',
-                  },
-                  format: '',
-                  indent: 0,
-                  version: 3,
-                },
-                {
-                  type: 'text',
-                  detail: 0,
-                  format: 0,
-                  mode: 'normal',
-                  style: '',
-                  text: '. ',
+                  text: "Join us as we celebrate our love and begin our journey together as husband and wife. We can't wait to share this special day with our family and friends.",
                   version: 1,
                 },
               ],
@@ -141,67 +86,21 @@ export const home: (args: HomeArgs) => RequiredDataFromCollectionSlug<'pages'> =
     },
     layout: [
       {
-        blockName: 'Content Block',
-        blockType: 'content',
-        columns: [
+        blockName: 'Wedding Details',
+        blockType: 'weddingDetails',
+        sectionTitle: 'Wedding Details',
+        subtitle: 'Everything you need to know about our special day',
+        backgroundColor: 'light',
+        details: [
           {
-            richText: {
+            icon: 'calendar',
+            title: 'Save the Date',
+            subtitle: 'Saturday',
+            mainText: 'June 15th, 2024',
+            description: {
               root: {
                 type: 'root',
                 children: [
-                  {
-                    type: 'heading',
-                    children: [
-                      {
-                        type: 'text',
-                        detail: 0,
-                        format: 0,
-                        mode: 'normal',
-                        style: '',
-                        text: 'Core features',
-                        version: 1,
-                      },
-                    ],
-                    direction: 'ltr',
-                    format: '',
-                    indent: 0,
-                    tag: 'h2',
-                    version: 1,
-                  },
-                ],
-                direction: 'ltr',
-                format: '',
-                indent: 0,
-                version: 1,
-              },
-            },
-            size: 'full',
-          },
-          {
-            enableLink: false,
-            richText: {
-              root: {
-                type: 'root',
-                children: [
-                  {
-                    type: 'heading',
-                    children: [
-                      {
-                        type: 'text',
-                        detail: 0,
-                        format: 0,
-                        mode: 'normal',
-                        style: '',
-                        text: 'Admin Dashboard',
-                        version: 1,
-                      },
-                    ],
-                    direction: 'ltr',
-                    format: '',
-                    indent: 0,
-                    tag: 'h3',
-                    version: 1,
-                  },
                   {
                     type: 'paragraph',
                     children: [
@@ -211,39 +110,7 @@ export const home: (args: HomeArgs) => RequiredDataFromCollectionSlug<'pages'> =
                         format: 0,
                         mode: 'normal',
                         style: '',
-                        text: "Manage this site's pages and posts from the ",
-                        version: 1,
-                      },
-                      {
-                        type: 'link',
-                        children: [
-                          {
-                            type: 'text',
-                            detail: 0,
-                            format: 0,
-                            mode: 'normal',
-                            style: '',
-                            text: 'admin dashboard',
-                            version: 1,
-                          },
-                        ],
-                        direction: 'ltr',
-                        fields: {
-                          linkType: 'custom',
-                          newTab: false,
-                          url: '/admin',
-                        },
-                        format: '',
-                        indent: 0,
-                        version: 2,
-                      },
-                      {
-                        type: 'text',
-                        detail: 0,
-                        format: 0,
-                        mode: 'normal',
-                        style: '',
-                        text: '.',
+                        text: 'Mark your calendars for our special day!',
                         version: 1,
                       },
                     ],
@@ -260,33 +127,16 @@ export const home: (args: HomeArgs) => RequiredDataFromCollectionSlug<'pages'> =
                 version: 1,
               },
             },
-            size: 'oneThird',
           },
           {
-            enableLink: false,
-            richText: {
+            icon: 'clock',
+            title: 'Ceremony Time',
+            subtitle: 'Begins at',
+            mainText: '4:00 PM',
+            description: {
               root: {
                 type: 'root',
                 children: [
-                  {
-                    type: 'heading',
-                    children: [
-                      {
-                        type: 'text',
-                        detail: 0,
-                        format: 0,
-                        mode: 'normal',
-                        style: '',
-                        text: 'Preview',
-                        version: 1,
-                      },
-                    ],
-                    direction: 'ltr',
-                    format: '',
-                    indent: 0,
-                    tag: 'h3',
-                    version: 1,
-                  },
                   {
                     type: 'paragraph',
                     children: [
@@ -296,7 +146,7 @@ export const home: (args: HomeArgs) => RequiredDataFromCollectionSlug<'pages'> =
                         format: 0,
                         mode: 'normal',
                         style: '',
-                        text: 'Using versions, drafts, and preview, editors can review and share their changes before publishing them.',
+                        text: 'Please arrive 15 minutes early for seating.',
                         version: 1,
                       },
                     ],
@@ -313,33 +163,16 @@ export const home: (args: HomeArgs) => RequiredDataFromCollectionSlug<'pages'> =
                 version: 1,
               },
             },
-            size: 'oneThird',
           },
           {
-            enableLink: false,
-            richText: {
+            icon: 'mapPin',
+            title: 'Venue',
+            subtitle: 'Location',
+            mainText: 'Beautiful Garden Venue',
+            description: {
               root: {
                 type: 'root',
                 children: [
-                  {
-                    type: 'heading',
-                    children: [
-                      {
-                        type: 'text',
-                        detail: 0,
-                        format: 0,
-                        mode: 'normal',
-                        style: '',
-                        text: 'Page Builder',
-                        version: 1,
-                      },
-                    ],
-                    direction: 'ltr',
-                    format: '',
-                    indent: 0,
-                    tag: 'h3',
-                    version: 1,
-                  },
                   {
                     type: 'paragraph',
                     children: [
@@ -349,7 +182,7 @@ export const home: (args: HomeArgs) => RequiredDataFromCollectionSlug<'pages'> =
                         format: 0,
                         mode: 'normal',
                         style: '',
-                        text: 'Custom page builder allows you to create unique page, post, and project layouts for any type of content.',
+                        text: '123 Wedding Lane, Love City, LC 12345',
                         version: 1,
                       },
                     ],
@@ -366,180 +199,18 @@ export const home: (args: HomeArgs) => RequiredDataFromCollectionSlug<'pages'> =
                 version: 1,
               },
             },
-            size: 'oneThird',
-          },
-          {
-            enableLink: false,
-            richText: {
-              root: {
-                type: 'root',
-                children: [
-                  {
-                    type: 'heading',
-                    children: [
-                      {
-                        type: 'text',
-                        detail: 0,
-                        format: 0,
-                        mode: 'normal',
-                        style: '',
-                        text: 'SEO',
-                        version: 1,
-                      },
-                    ],
-                    direction: 'ltr',
-                    format: '',
-                    indent: 0,
-                    tag: 'h3',
-                    version: 1,
-                  },
-                  {
-                    type: 'paragraph',
-                    children: [
-                      {
-                        type: 'text',
-                        detail: 0,
-                        format: 0,
-                        mode: 'normal',
-                        style: '',
-                        text: 'Editors have complete control over SEO data and site content directly from the ',
-                        version: 1,
-                      },
-                      {
-                        type: 'link',
-                        children: [
-                          {
-                            type: 'text',
-                            detail: 0,
-                            format: 0,
-                            mode: 'normal',
-                            style: '',
-                            text: 'admin dashboard',
-                            version: 1,
-                          },
-                        ],
-                        direction: 'ltr',
-                        fields: {
-                          linkType: 'custom',
-                          newTab: false,
-                          url: '/admin',
-                        },
-                        format: '',
-                        indent: 0,
-                        version: 2,
-                      },
-                      {
-                        type: 'text',
-                        detail: 0,
-                        format: 0,
-                        mode: 'normal',
-                        style: '',
-                        text: '.',
-                        version: 1,
-                      },
-                    ],
-                    direction: 'ltr',
-                    format: '',
-                    indent: 0,
-                    textFormat: 0,
-                    version: 1,
-                  },
-                ],
-                direction: 'ltr',
-                format: '',
-                indent: 0,
-                version: 1,
-              },
-            },
-            size: 'oneThird',
-          },
-          {
-            enableLink: false,
-            richText: {
-              root: {
-                type: 'root',
-                children: [
-                  {
-                    type: 'heading',
-                    children: [
-                      {
-                        type: 'text',
-                        detail: 0,
-                        format: 0,
-                        mode: 'normal',
-                        style: '',
-                        text: 'Dark Mode',
-                        version: 1,
-                      },
-                    ],
-                    direction: 'ltr',
-                    format: '',
-                    indent: 0,
-                    tag: 'h3',
-                    version: 1,
-                  },
-                  {
-                    type: 'paragraph',
-                    children: [
-                      {
-                        type: 'text',
-                        detail: 0,
-                        format: 0,
-                        mode: 'normal',
-                        style: '',
-                        text: 'Users will experience this site in their preferred color scheme and each block can be inverted.',
-                        version: 1,
-                      },
-                    ],
-                    direction: 'ltr',
-                    format: '',
-                    indent: 0,
-                    textFormat: 0,
-                    version: 1,
-                  },
-                ],
-                direction: 'ltr',
-                format: '',
-                indent: 0,
-                version: 1,
-              },
-            },
-            size: 'oneThird',
           },
         ],
       },
       {
-        blockName: 'Media Block',
-        blockType: 'mediaBlock',
-        media: metaImage.id,
-      },
-      {
-        blockName: 'Archive Block',
-        blockType: 'archive',
-        categories: [],
-        introContent: {
+        blockName: 'Love Story',
+        blockType: 'loveStory',
+        sectionTitle: 'Our Love Story',
+        backgroundColor: 'transparent',
+        content: {
           root: {
             type: 'root',
             children: [
-              {
-                type: 'heading',
-                children: [
-                  {
-                    type: 'text',
-                    detail: 0,
-                    format: 0,
-                    mode: 'normal',
-                    style: '',
-                    text: 'Recent posts',
-                    version: 1,
-                  },
-                ],
-                direction: 'ltr',
-                format: '',
-                indent: 0,
-                tag: 'h3',
-                version: 1,
-              },
               {
                 type: 'paragraph',
                 children: [
@@ -549,7 +220,7 @@ export const home: (args: HomeArgs) => RequiredDataFromCollectionSlug<'pages'> =
                     format: 0,
                     mode: 'normal',
                     style: '',
-                    text: 'The posts below are displayed in an "Archive" layout building block which is an extremely powerful way to display documents on a page. It can be auto-populated by collection or by category, or posts can be individually selected. Pagination controls will automatically appear if the number of results exceeds the number of items per page.',
+                    text: 'James and Anne first met in college during their sophomore year. What started as a friendship over shared study sessions quickly blossomed into something beautiful. After years of adventures, laughter, and growing together, James proposed during a sunset walk on their favorite beach.',
                     version: 1,
                   },
                 ],
@@ -566,45 +237,18 @@ export const home: (args: HomeArgs) => RequiredDataFromCollectionSlug<'pages'> =
             version: 1,
           },
         },
-        populateBy: 'collection',
-        relationTo: 'posts',
+        image: metaImage.id,
+        imageAlt: 'James and Anne together',
+        layout: 'imageRight',
       },
       {
-        blockName: 'CTA',
-        blockType: 'cta',
-        links: [
-          {
-            link: {
-              type: 'custom',
-              appearance: 'default',
-              label: 'All posts',
-              url: '/posts',
-            },
-          },
-        ],
-        richText: {
+        blockName: 'RSVP Section',
+        blockType: 'rsvp',
+        sectionTitle: 'Join Our Celebration',
+        description: {
           root: {
             type: 'root',
             children: [
-              {
-                type: 'heading',
-                children: [
-                  {
-                    type: 'text',
-                    detail: 0,
-                    format: 0,
-                    mode: 'normal',
-                    style: '',
-                    text: 'This is a call to action',
-                    version: 1,
-                  },
-                ],
-                direction: 'ltr',
-                format: '',
-                indent: 0,
-                tag: 'h3',
-                version: 1,
-              },
               {
                 type: 'paragraph',
                 children: [
@@ -614,39 +258,7 @@ export const home: (args: HomeArgs) => RequiredDataFromCollectionSlug<'pages'> =
                     format: 0,
                     mode: 'normal',
                     style: '',
-                    text: 'This is a custom layout building block ',
-                    version: 1,
-                  },
-                  {
-                    type: 'link',
-                    children: [
-                      {
-                        type: 'text',
-                        detail: 0,
-                        format: 0,
-                        mode: 'normal',
-                        style: '',
-                        text: 'configured in the admin dashboard',
-                        version: 1,
-                      },
-                    ],
-                    direction: 'ltr',
-                    fields: {
-                      linkType: 'custom',
-                      newTab: false,
-                      url: '/admin',
-                    },
-                    format: '',
-                    indent: 0,
-                    version: 2,
-                  },
-                  {
-                    type: 'text',
-                    detail: 0,
-                    format: 0,
-                    mode: 'normal',
-                    style: '',
-                    text: '.',
+                    text: 'We hope you can join us on our special day! Please let us know if you can attend by responding below.',
                     version: 1,
                   },
                 ],
@@ -663,12 +275,17 @@ export const home: (args: HomeArgs) => RequiredDataFromCollectionSlug<'pages'> =
             version: 1,
           },
         },
+        buttonText: 'RSVP Now',
+        buttonLink: '/rsvp',
+        deadlineText: 'Please respond by May 1st, 2024',
+        backgroundColor: 'gradient',
       },
     ],
     meta: {
-      description: 'An open-source website built with Payload and Next.js.',
+      description:
+        'Join James & Anne as they celebrate their wedding day. RSVP and find all the details you need for our special celebration.',
       image: heroImage.id,
-      title: 'Payload Website Template',
+      title: 'James & Anne Wedding',
     },
     title: 'Home',
   }
