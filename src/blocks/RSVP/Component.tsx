@@ -1,7 +1,6 @@
 'use client'
 
 import React, { useState } from 'react'
-import Link from 'next/link'
 import { Heart, Search, Check, X, Users, Mail, MessageSquare, ChevronDown } from 'lucide-react'
 
 import type { RSVPBlock as RSVPBlockProps } from '@/payload-types'
