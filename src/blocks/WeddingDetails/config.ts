@@ -153,6 +153,14 @@ export const WeddingDetails: Block = {
             condition: (data, siblingData) => Boolean(siblingData?.image),
           },
         },
+        {
+          name: 'venueLink',
+          type: 'text',
+          admin: {
+            description: 'Optional venue link (e.g., Google Maps link for location cards)',
+            condition: (data, siblingData) => siblingData?.icon === 'mapPin',
+          },
+        },
       ],
       admin: {
         description: 'Add wedding detail cards (date, time, location, etc.)',

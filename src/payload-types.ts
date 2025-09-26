@@ -1333,6 +1333,10 @@ export interface WeddingDetailsBlock {
      * Alt text for the image (for accessibility)
      */
     imageAlt?: string | null;
+    /**
+     * Optional venue link (e.g., Google Maps link for location cards)
+     */
+    venueLink?: string | null;
     id?: string | null;
   }[];
   id?: string | null;
@@ -1951,6 +1955,7 @@ export interface WeddingDetailsBlockSelect<T extends boolean = true> {
         description?: T;
         image?: T;
         imageAlt?: T;
+        venueLink?: T;
         id?: T;
       };
   id?: T;

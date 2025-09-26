@@ -1,7 +1,7 @@
 'use client'
 
 import React from 'react'
-import { Heart, Calendar, Clock, MapPin } from 'lucide-react'
+import { Heart, Calendar, Clock, MapPin, Link2Icon } from 'lucide-react'
 
 import type { WeddingDetailsBlock as WeddingDetailsBlockProps } from '@/payload-types'
 import { Card, CardContent } from '@/components/ui/card'
@@ -134,6 +134,23 @@ export const WeddingDetailsBlock: React.FC<WeddingDetailsBlockProps> = ({
                     >
                       <RichText data={detail.description} enableGutter={false} />
                     </div>
+                  )}
+
+                  {detail.venueLink && detail.icon === 'mapPin' && (
+                    <a
+                      href={detail.venueLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={`inline-flex items-center gap-2 mt-4 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
+                        backgroundColor === 'image'
+                          ? 'bg-white/20 hover:bg-white/30 text-white border border-white/30'
+                          : 'bg-emerald-100 hover:bg-emerald-200 text-emerald-700 border border-emerald-200'
+                      }`}
+                    >
+                      <MapPin className="w-4 h-4" />
+                      View Location
+                      {/* <Link2Icon className="w-3 h-3" /> */}
+                    </a>
                   )}
                 </CardContent>
               </Card>
