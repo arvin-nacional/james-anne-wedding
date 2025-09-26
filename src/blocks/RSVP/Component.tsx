@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useState } from 'react'
-import { Heart, Search, Check, X, Users, Mail, MessageSquare, ChevronDown } from 'lucide-react'
+import { Heart, Check, X, Users, Mail, MessageSquare, ChevronDown, Send } from 'lucide-react'
 
 import type { RSVPBlock as RSVPBlockProps } from '@/payload-types'
 import { Button } from '@/components/ui/button'
@@ -245,7 +245,7 @@ export const RSVPBlock: React.FC<RSVPBlockProps> = ({
                     {isSearching ? (
                       <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
                     ) : (
-                      <Search className="w-5 h-5" />
+                      <Send className="w-5 h-5" />
                     )}
                   </Button>
                 </div>
