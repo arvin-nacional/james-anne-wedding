@@ -1121,30 +1121,6 @@ export interface HeroCarouselBlock {
     };
   };
   /**
-   * Secondary call-to-action button (e.g., "View Details")
-   */
-  secondaryButton: {
-    link: {
-      type?: ('reference' | 'custom') | null;
-      newTab?: boolean | null;
-      reference?:
-        | ({
-            relationTo: 'pages';
-            value: string | Page;
-          } | null)
-        | ({
-            relationTo: 'posts';
-            value: string | Post;
-          } | null);
-      url?: string | null;
-      label: string;
-      /**
-       * Choose how the link should be rendered.
-       */
-      appearance?: 'outline' | null;
-    };
-  };
-  /**
    * Automatically advance carousel images
    */
   autoAdvance?: boolean | null;
@@ -1872,20 +1848,6 @@ export interface HeroCarouselBlockSelect<T extends boolean = true> {
         id?: T;
       };
   primaryButton?:
-    | T
-    | {
-        link?:
-          | T
-          | {
-              type?: T;
-              newTab?: T;
-              reference?: T;
-              url?: T;
-              label?: T;
-              appearance?: T;
-            };
-      };
-  secondaryButton?:
     | T
     | {
         link?:

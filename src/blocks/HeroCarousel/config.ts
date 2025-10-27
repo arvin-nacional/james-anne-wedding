@@ -79,18 +79,6 @@ export const HeroCarousel: Block = {
       },
     },
     {
-      name: 'secondaryButton',
-      type: 'group',
-      fields: [
-        link({
-          appearances: ['outline'],
-        }),
-      ],
-      admin: {
-        description: 'Secondary call-to-action button (e.g., "View Details")',
-      },
-    },
-    {
       name: 'autoAdvance',
       type: 'checkbox',
       defaultValue: true,

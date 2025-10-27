@@ -14,7 +14,6 @@ export const HeroCarouselBlock: React.FC<HeroCarouselBlockProps> = ({
   description,
   images,
   primaryButton,
-  secondaryButton,
   autoAdvance = true,
   autoAdvanceInterval = 5000,
 }) => {
@@ -157,25 +156,12 @@ export const HeroCarouselBlock: React.FC<HeroCarouselBlockProps> = ({
               className="bg-white text-emerald-600 hover:bg-emerald-50 px-8 py-3 text-lg font-medium rounded-lg shadow-lg transition-all duration-200 hover:shadow-xl"
             />
           )}
-          {secondaryButton?.link && (
-            <CMSLink
-              {...secondaryButton.link}
-              appearance="outline"
-              size="lg"
-              className="border-2 border-white text-white hover:bg-white hover:text-emerald-600 px-8 py-3 text-lg font-medium rounded-lg bg-transparent backdrop-blur-sm transition-all duration-200"
-            />
-          )}
 
-          {/* Fallback buttons if no CMS data */}
-          {!primaryButton?.link && !secondaryButton?.link && (
-            <>
-              <button className="bg-white text-emerald-600 hover:bg-emerald-50 px-8 py-3 text-lg font-medium rounded-lg shadow-lg transition-all duration-200 hover:shadow-xl">
-                RSVP Now
-              </button>
-              <button className="border-2 border-white text-white hover:bg-white hover:text-emerald-600 px-8 py-3 text-lg font-medium rounded-lg bg-transparent backdrop-blur-sm transition-all duration-200">
-                View Details
-              </button>
-            </>
+          {/* Fallback primary button if no CMS data */}
+          {!primaryButton?.link && (
+            <button className="bg-white text-emerald-600 hover:bg-emerald-50 px-8 py-3 text-lg font-medium rounded-lg shadow-lg transition-all duration-200 hover:shadow-xl">
+              RSVP Now
+            </button>
           )}
         </div>
       </div>
