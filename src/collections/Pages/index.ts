@@ -7,6 +7,7 @@ import { CeremonyReception } from '../../blocks/CeremonyReception/config'
 import { Contact } from '../../blocks/Contact/config'
 import { Content } from '../../blocks/Content/config'
 import { DressCode } from '../../blocks/DressCode/config'
+import { FAQ } from '../../blocks/FAQ/config'
 import { FormBlock } from '../../blocks/Form/config'
 import { HeroCarousel } from '../../blocks/HeroCarousel/config'
 import { LoveStory } from '../../blocks/LoveStory/config'
@@ -87,6 +88,7 @@ export const Pages: CollectionConfig<'pages'> = {
                 Contact,
                 Content,
                 DressCode,
+                FAQ,
                 MediaBlock,
                 FormBlock,
                 HeroCarousel,

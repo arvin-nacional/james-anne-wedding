@@ -11,11 +11,10 @@ export const DressCodeBlock: React.FC<DressCodeBlockProps> = ({
   sectionTitle = 'Dress Code',
   description,
   dressCodeType = 'cocktail',
-  groomsmenAttire,
-  bridesmaidsAttire,
-  menAttire,
-  womenAttire,
-  sponsorsAttire,
+  parentAttire,
+  principalAttire,
+  entourageAttire,
+  guestAttire,
   additionalNotes,
   colorPalette,
   avoidColors,
@@ -88,80 +87,64 @@ export const DressCodeBlock: React.FC<DressCodeBlockProps> = ({
 
         {/* Attire Guidelines */}
         <div className="grid md:grid-cols-2 gap-8 mb-16">
-          {/* Groomsmen Attire */}
-          {groomsmenAttire?.referenceImage && (
+          {/* Parent Attire */}
+          {parentAttire?.referenceImage && (
             <div
               className={`${cardBgColor} rounded-lg p-6 border ${borderColor} shadow-lg text-center`}
             >
-              <h3 className={`text-2xl font-semibold ${textColor} mb-6`}>Groomsmen</h3>
+              <h3 className={`text-2xl font-semibold ${textColor} mb-6`}>Parent</h3>
               <div className="overflow-hidden rounded-lg">
                 <Media
-                  resource={groomsmenAttire.referenceImage}
-                  alt="Groomsmen attire reference"
+                  resource={parentAttire.referenceImage}
+                  alt="Parent attire reference"
                   className="w-full h-64 object-cover"
                 />
               </div>
             </div>
           )}
 
-          {/* Bridesmaids Attire */}
-          {bridesmaidsAttire?.referenceImage && (
+          {/* Principal Attire */}
+          {principalAttire?.referenceImage && (
             <div
               className={`${cardBgColor} rounded-lg p-6 border ${borderColor} shadow-lg text-center`}
             >
-              <h3 className={`text-2xl font-semibold ${textColor} mb-6`}>Bridesmaids</h3>
+              <h3 className={`text-2xl font-semibold ${textColor} mb-6`}>Principal</h3>
               <div className="overflow-hidden rounded-lg">
                 <Media
-                  resource={bridesmaidsAttire.referenceImage}
-                  alt="Bridesmaids attire reference"
+                  resource={principalAttire.referenceImage}
+                  alt="Principal attire reference"
                   className="w-full h-64 object-cover"
                 />
               </div>
             </div>
           )}
 
-          {/* Men's Attire (Guests) */}
-          {menAttire?.referenceImage && (
+          {/* Entourage Attire */}
+          {entourageAttire?.referenceImage && (
             <div
               className={`${cardBgColor} rounded-lg p-6 border ${borderColor} shadow-lg text-center`}
             >
-              <h3 className={`text-2xl font-semibold ${textColor} mb-6`}>Men&apos;s Attire</h3>
+              <h3 className={`text-2xl font-semibold ${textColor} mb-6`}>Entourage</h3>
               <div className="overflow-hidden rounded-lg">
                 <Media
-                  resource={menAttire.referenceImage}
-                  alt="Men's attire reference"
+                  resource={entourageAttire.referenceImage}
+                  alt="Entourage attire reference"
                   className="w-full h-64 object-cover"
                 />
               </div>
             </div>
           )}
 
-          {/* Women's Attire (Guests) */}
-          {womenAttire?.referenceImage && (
+          {/* Guest Attire */}
+          {guestAttire?.referenceImage && (
             <div
               className={`${cardBgColor} rounded-lg p-6 border ${borderColor} shadow-lg text-center`}
             >
-              <h3 className={`text-2xl font-semibold ${textColor} mb-6`}>Women&apos;s Attire</h3>
+              <h3 className={`text-2xl font-semibold ${textColor} mb-6`}>Guests</h3>
               <div className="overflow-hidden rounded-lg">
                 <Media
-                  resource={womenAttire.referenceImage}
-                  alt="Women's attire reference"
-                  className="w-full h-64 object-cover"
-                />
-              </div>
-            </div>
-          )}
-
-          {/* Sponsors Attire */}
-          {sponsorsAttire?.referenceImage && (
-            <div
-              className={`${cardBgColor} rounded-lg p-6 border ${borderColor} shadow-lg text-center`}
-            >
-              <h3 className={`text-2xl font-semibold ${textColor} mb-6`}>Sponsors</h3>
-              <div className="overflow-hidden rounded-lg">
-                <Media
-                  resource={sponsorsAttire.referenceImage}
-                  alt="Sponsors attire reference"
+                  resource={guestAttire.referenceImage}
+                  alt="Guest attire reference"
                   className="w-full h-64 object-cover"
                 />
               </div>

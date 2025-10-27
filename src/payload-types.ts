@@ -199,6 +199,7 @@ export interface Page {
     | ContactBlock
     | ContentBlock
     | DressCodeBlock
+    | FAQBlock
     | MediaBlock
     | FormBlock
     | HeroCarouselBlock
@@ -564,9 +565,9 @@ export interface ContactBlock {
     [k: string]: unknown;
   };
   /**
-   * Contact email address
+   * Facebook Messenger link (e.g., "https://m.me/username" or "https://www.messenger.com/t/username")
    */
-  email?: string | null;
+  messengerLink?: string | null;
   /**
    * Contact phone number (e.g., "(123) 456-7890")
    */
@@ -656,9 +657,9 @@ export interface DressCodeBlock {
   dressCodeType?:
     | ('casual' | 'cocktail' | 'semiformal' | 'formal' | 'blacktie' | 'whitetie' | 'beachformal' | 'gardenparty')
     | null;
-  groomsmenAttire?: {
+  parentAttire?: {
     /**
-     * Detailed guidelines for groomsmen attire
+     * Detailed guidelines for parent attire
      */
     guidelines?: {
       root: {
@@ -676,13 +677,13 @@ export interface DressCodeBlock {
       [k: string]: unknown;
     } | null;
     /**
-     * Reference image for groomsmen attire
+     * Reference image for parent attire
      */
     referenceImage?: (string | null) | Media;
   };
-  bridesmaidsAttire?: {
+  principalAttire?: {
     /**
-     * Detailed guidelines for bridesmaids attire
+     * Detailed guidelines for principal attire
      */
     guidelines?: {
       root: {
@@ -700,13 +701,13 @@ export interface DressCodeBlock {
       [k: string]: unknown;
     } | null;
     /**
-     * Reference image for bridesmaids attire
+     * Reference image for principal attire
      */
     referenceImage?: (string | null) | Media;
   };
-  menAttire?: {
+  entourageAttire?: {
     /**
-     * Detailed guidelines for male guests' attire
+     * Detailed guidelines for entourage attire
      */
     guidelines?: {
       root: {
@@ -724,13 +725,13 @@ export interface DressCodeBlock {
       [k: string]: unknown;
     } | null;
     /**
-     * Reference image for men's guest attire
+     * Reference image for entourage attire
      */
     referenceImage?: (string | null) | Media;
   };
-  womenAttire?: {
+  guestAttire?: {
     /**
-     * Detailed guidelines for female guests' attire
+     * Detailed guidelines for guest attire
      */
     guidelines?: {
       root: {
@@ -748,31 +749,7 @@ export interface DressCodeBlock {
       [k: string]: unknown;
     } | null;
     /**
-     * Reference image for women's guest attire
-     */
-    referenceImage?: (string | null) | Media;
-  };
-  sponsorsAttire?: {
-    /**
-     * Detailed guidelines for sponsors attire
-     */
-    guidelines?: {
-      root: {
-        type: string;
-        children: {
-          type: string;
-          version: number;
-          [k: string]: unknown;
-        }[];
-        direction: ('ltr' | 'rtl') | null;
-        format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-        indent: number;
-        version: number;
-      };
-      [k: string]: unknown;
-    } | null;
-    /**
-     * Reference image for sponsors attire
+     * Reference image for guest attire
      */
     referenceImage?: (string | null) | Media;
   };
@@ -847,6 +824,71 @@ export interface DressCodeBlock {
   id?: string | null;
   blockName?: string | null;
   blockType: 'dressCode';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "FAQBlock".
+ */
+export interface FAQBlock {
+  /**
+   * Main section title for the FAQ section
+   */
+  sectionTitle?: string | null;
+  /**
+   * Optional description about the FAQs
+   */
+  description?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  /**
+   * List of frequently asked questions and answers
+   */
+  faqItems?:
+    | {
+        /**
+         * The question being asked
+         */
+        question: string;
+        /**
+         * The answer to the question
+         */
+        answer: {
+          root: {
+            type: string;
+            children: {
+              type: string;
+              version: number;
+              [k: string]: unknown;
+            }[];
+            direction: ('ltr' | 'rtl') | null;
+            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+            indent: number;
+            version: number;
+          };
+          [k: string]: unknown;
+        };
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * Choose the background style for this section
+   */
+  backgroundColor?: ('light' | 'lightGreen' | 'dark' | 'transparent' | 'gradient') | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'faq';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1650,6 +1692,7 @@ export interface PagesSelect<T extends boolean = true> {
         contact?: T | ContactBlockSelect<T>;
         content?: T | ContentBlockSelect<T>;
         dressCode?: T | DressCodeBlockSelect<T>;
+        faq?: T | FAQBlockSelect<T>;
         mediaBlock?: T | MediaBlockSelect<T>;
         formBlock?: T | FormBlockSelect<T>;
         heroCarousel?: T | HeroCarouselBlockSelect<T>;
@@ -1729,7 +1772,7 @@ export interface CeremonyReceptionBlockSelect<T extends boolean = true> {
 export interface ContactBlockSelect<T extends boolean = true> {
   sectionTitle?: T;
   description?: T;
-  email?: T;
+  messengerLink?: T;
   phone?: T;
   backgroundColor?: T;
   id?: T;
@@ -1769,31 +1812,25 @@ export interface DressCodeBlockSelect<T extends boolean = true> {
   sectionTitle?: T;
   description?: T;
   dressCodeType?: T;
-  groomsmenAttire?:
+  parentAttire?:
     | T
     | {
         guidelines?: T;
         referenceImage?: T;
       };
-  bridesmaidsAttire?:
+  principalAttire?:
     | T
     | {
         guidelines?: T;
         referenceImage?: T;
       };
-  menAttire?:
+  entourageAttire?:
     | T
     | {
         guidelines?: T;
         referenceImage?: T;
       };
-  womenAttire?:
-    | T
-    | {
-        guidelines?: T;
-        referenceImage?: T;
-      };
-  sponsorsAttire?:
+  guestAttire?:
     | T
     | {
         guidelines?: T;
@@ -1807,6 +1844,24 @@ export interface DressCodeBlockSelect<T extends boolean = true> {
     | {
         image?: T;
         caption?: T;
+        id?: T;
+      };
+  backgroundColor?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "FAQBlock_select".
+ */
+export interface FAQBlockSelect<T extends boolean = true> {
+  sectionTitle?: T;
+  description?: T;
+  faqItems?:
+    | T
+    | {
+        question?: T;
+        answer?: T;
         id?: T;
       };
   backgroundColor?: T;

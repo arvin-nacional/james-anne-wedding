@@ -63,16 +63,16 @@ export const DressCode: Block = {
       ],
     },
     {
-      name: 'groomsmenAttire',
+      name: 'parentAttire',
       type: 'group',
-      label: 'Groomsmen Attire',
+      label: 'Parent Attire',
       fields: [
         {
           name: 'guidelines',
           type: 'richText',
-          label: 'Groomsmen Guidelines',
+          label: 'Parent Guidelines',
           admin: {
-            description: 'Detailed guidelines for groomsmen attire',
+            description: 'Detailed guidelines for parent attire',
           },
         },
         {
@@ -81,22 +81,22 @@ export const DressCode: Block = {
           relationTo: 'media',
           label: 'Reference Image',
           admin: {
-            description: 'Reference image for groomsmen attire',
+            description: 'Reference image for parent attire',
           },
         },
       ],
     },
     {
-      name: 'bridesmaidsAttire',
+      name: 'principalAttire',
       type: 'group',
-      label: 'Bridesmaids Attire',
+      label: 'Principal Attire',
       fields: [
         {
           name: 'guidelines',
           type: 'richText',
-          label: 'Bridesmaids Guidelines',
+          label: 'Principal Guidelines',
           admin: {
-            description: 'Detailed guidelines for bridesmaids attire',
+            description: 'Detailed guidelines for principal attire',
           },
         },
         {
@@ -105,22 +105,22 @@ export const DressCode: Block = {
           relationTo: 'media',
           label: 'Reference Image',
           admin: {
-            description: 'Reference image for bridesmaids attire',
+            description: 'Reference image for principal attire',
           },
         },
       ],
     },
     {
-      name: 'menAttire',
+      name: 'entourageAttire',
       type: 'group',
-      label: "Men's Attire (Guests)",
+      label: 'Entourage Attire',
       fields: [
         {
           name: 'guidelines',
           type: 'richText',
-          label: "Men's Attire Guidelines",
+          label: 'Entourage Guidelines',
           admin: {
-            description: "Detailed guidelines for male guests' attire",
+            description: 'Detailed guidelines for entourage attire',
           },
         },
         {
@@ -129,22 +129,22 @@ export const DressCode: Block = {
           relationTo: 'media',
           label: 'Reference Image',
           admin: {
-            description: "Reference image for men's guest attire",
+            description: 'Reference image for entourage attire',
           },
         },
       ],
     },
     {
-      name: 'womenAttire',
+      name: 'guestAttire',
       type: 'group',
-      label: "Women's Attire (Guests)",
+      label: 'Guest Attire',
       fields: [
         {
           name: 'guidelines',
           type: 'richText',
-          label: "Women's Attire Guidelines",
+          label: 'Guest Guidelines',
           admin: {
-            description: "Detailed guidelines for female guests' attire",
+            description: 'Detailed guidelines for guest attire',
           },
         },
         {
@@ -153,31 +153,7 @@ export const DressCode: Block = {
           relationTo: 'media',
           label: 'Reference Image',
           admin: {
-            description: "Reference image for women's guest attire",
-          },
-        },
-      ],
-    },
-    {
-      name: 'sponsorsAttire',
-      type: 'group',
-      label: 'Sponsors Attire',
-      fields: [
-        {
-          name: 'guidelines',
-          type: 'richText',
-          label: 'Sponsors Attire Guidelines',
-          admin: {
-            description: 'Detailed guidelines for sponsors attire',
-          },
-        },
-        {
-          name: 'referenceImage',
-          type: 'upload',
-          relationTo: 'media',
-          label: 'Reference Image',
-          admin: {
-            description: 'Reference image for sponsors attire',
+            description: 'Reference image for guest attire',
           },
         },
       ],

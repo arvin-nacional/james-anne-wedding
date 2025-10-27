@@ -38,10 +38,11 @@ export const Contact: Block = {
       },
     },
     {
-      name: 'email',
-      type: 'email',
+      name: 'messengerLink',
+      type: 'text',
       admin: {
-        description: 'Contact email address',
+        description:
+          'Facebook Messenger link (e.g., "https://m.me/username" or "https://www.messenger.com/t/username")',
       },
     },
     {

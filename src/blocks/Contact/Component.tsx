@@ -1,7 +1,7 @@
 'use client'
 
 import React from 'react'
-import { Mail, Phone } from 'lucide-react'
+import { MessageCircle, Phone } from 'lucide-react'
 
 import type { ContactBlock as ContactBlockProps } from '@/payload-types'
 import RichText from '@/components/RichText'
@@ -9,7 +9,7 @@ import RichText from '@/components/RichText'
 export const ContactBlock: React.FC<ContactBlockProps> = ({
   sectionTitle = 'Questions?',
   description,
-  email,
+  messengerLink,
   phone,
   backgroundColor = 'light',
 }) => {
@@ -40,21 +40,23 @@ export const ContactBlock: React.FC<ContactBlockProps> = ({
         )}
 
         <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
-          {email && (
+          {messengerLink && (
             <a
-              href={`mailto:${email}`}
+              href={messengerLink}
+              target="_blank"
+              rel="noopener noreferrer"
               className={`hover:text-emerald-700 transition-colors flex items-center gap-2 ${
                 backgroundColor === 'dark'
                   ? 'text-emerald-400 hover:text-emerald-300'
                   : 'text-emerald-600'
               }`}
             >
-              <Mail className="w-4 h-4" />
-              <span>{email}</span>
+              <MessageCircle className="w-4 h-4" />
+              <span>Message us</span>
             </a>
           )}
 
-          {email && phone && (
+          {messengerLink && phone && (
             <span
               className={`hidden sm:block ${backgroundColor === 'dark' ? 'text-gray-500' : 'text-gray-400'}`}
             >

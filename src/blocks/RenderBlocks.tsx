@@ -6,6 +6,7 @@ import { CallToActionBlock } from '@/blocks/CallToAction/Component'
 import { CeremonyReceptionBlock } from '@/blocks/CeremonyReception/Component'
 import { ContentBlock } from '@/blocks/Content/Component'
 import { DressCodeBlock } from '@/blocks/DressCode/Component'
+import { FAQBlock } from '@/blocks/FAQ/Component'
 import { FormBlock } from '@/blocks/Form/Component'
 import { HeroCarouselBlock } from '@/blocks/HeroCarousel/Component'
 import { LoveStoryBlock } from '@/blocks/LoveStory/Component'
@@ -19,6 +20,7 @@ const blockComponents = {
   content: ContentBlock,
   cta: CallToActionBlock,
   dressCode: DressCodeBlock,
+  faq: FAQBlock,
   formBlock: FormBlock,
   heroCarousel: HeroCarouselBlock,
   loveStory: LoveStoryBlock,
@@ -34,6 +36,7 @@ const blockToSectionId = {
   weddingDetails: 'wedding-details',
   ceremonyReception: 'ceremony-reception',
   dressCode: 'dress-code',
+  faq: 'faq',
   rsvp: 'rsvp',
   contact: 'contact',
   heroCarousel: 'hero',
