@@ -6,14 +6,12 @@ import { usePathname } from 'next/navigation'
 import type { Header as HeaderType } from '@/payload-types'
 
 import { CMSLink } from '@/components/Link'
-import Link from 'next/link'
-import { SearchIcon, Menu, X } from 'lucide-react'
+import { Menu, X } from 'lucide-react'
 
 // Home page sections for smooth scrolling
 const homeSections = [
   { label: 'Our Story', href: '#love-story' },
   { label: 'Details', href: '#wedding-details' },
-  { label: 'Ceremony', href: '#ceremony-reception' },
   { label: 'Dress Code', href: '#dress-code' },
   { label: 'RSVP Now', href: '#rsvp' },
 ]
