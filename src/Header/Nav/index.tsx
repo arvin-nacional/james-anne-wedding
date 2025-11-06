@@ -13,6 +13,7 @@ const homeSections = [
   { label: 'Our Story', href: '#love-story' },
   { label: 'Details', href: '#wedding-details' },
   { label: 'Dress Code', href: '#dress-code' },
+  { label: 'FAQ', href: '#faq' },
   { label: 'RSVP Now', href: '#rsvp' },
 ]
 

@@ -6,7 +6,6 @@ import React, { useEffect, useState } from 'react'
 
 import type { Header } from '@/payload-types'
 
-import { Logo } from '@/components/Logo/Logo'
 import { HeaderNav } from './Nav'
 
 interface HeaderClientProps {
@@ -97,7 +96,11 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
       <div className="container mx-auto px-4">
         <div className="py-4 flex justify-between items-center">
           <Link href="/">
-            <Logo className="text-white filter brightness-0 invert" />
+            <img
+              src="/media/logo.png"
+              alt="James & Anne Wedding"
+              className="h-8 w-auto filter brightness-0 invert"
+            />
           </Link>
           <HeaderNav data={data} />
         </div>

@@ -73,7 +73,7 @@ export const WeddingDetailsBlock: React.FC<WeddingDetailsBlockProps> = ({
           )}
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-2 gap-8">
           {details?.map((detail, index) => {
             const IconComponent =
               detail.icon === 'calendar' ? Calendar : detail.icon === 'clock' ? Clock : MapPin
@@ -141,7 +141,7 @@ export const WeddingDetailsBlock: React.FC<WeddingDetailsBlockProps> = ({
                       href={detail.venueLink}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className={`inline-flex items-center gap-2 mt-4 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
+                      className={`inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
                         backgroundColor === 'image'
                           ? 'bg-white/20 hover:bg-white/30 text-white border border-white/30'
                           : 'bg-emerald-100 hover:bg-emerald-200 text-emerald-700 border border-emerald-200'
