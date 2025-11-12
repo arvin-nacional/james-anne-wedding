@@ -87,21 +87,21 @@ export const WeddingDetailsBlock: React.FC<WeddingDetailsBlockProps> = ({
             return (
               <Card
                 key={index}
-                className={`${cardClass} overflow-hidden group hover:shadow-2xl transition-all duration-300 hover:scale-[1.02] ${backgroundColor === 'image' ? 'hover:bg-white/20' : ''}`}
+                className={`${cardClass} overflow-hidden group hover:shadow-2xl  rounded-xl transition-all duration-300 hover:scale-[1.02] ${backgroundColor === 'image' ? 'hover:bg-white/20' : ''}`}
               >
                 {detail.image && (
-                  <div className="h-48 overflow-hidden">
+                  <div className="h-[300px] overflow-hidden object-fill">
                     <Media
                       resource={detail.image}
                       alt={detail.imageAlt || detail.title || 'Wedding detail'}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                      className="w-full h-full object-fill group-hover:scale-105 transition-transform duration-300"
                     />
                   </div>
                 )}
 
                 <CardContent className="p-6 text-center">
                   <IconComponent
-                    className={`w-8 h-8 mx-auto mb-3 ${backgroundColor === 'image' ? 'text-white' : 'text-emerald-400'}`}
+                    className={`w-8 h-8 mx-auto ${backgroundColor === 'image' ? 'text-white' : 'text-emerald-400'}`}
                   />
 
                   {detail.title && (
@@ -122,19 +122,19 @@ export const WeddingDetailsBlock: React.FC<WeddingDetailsBlockProps> = ({
 
                   {detail.mainText && (
                     <p
-                      className={`text-2xl font-serif mb-2 ${backgroundColor === 'image' ? 'text-white font-medium' : 'text-emerald-600'}`}
+                      className={`text-2xl font-serif mb-4 ${backgroundColor === 'image' ? 'text-white font-medium' : 'text-emerald-600'}`}
                     >
                       {detail.mainText}
                     </p>
                   )}
 
-                  {detail.description && (
+                  {/* {detail.description && (
                     <div
                       className={`text-sm ${backgroundColor === 'image' ? 'text-white/70' : 'text-gray-600'}`}
                     >
                       <RichText data={detail.description} enableGutter={false} />
                     </div>
-                  )}
+                  )} */}
 
                   {detail.venueLink && detail.icon === 'mapPin' && (
                     <a

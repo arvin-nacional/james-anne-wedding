@@ -10,7 +10,7 @@ export const Logo = (props: Props) => {
 
   return (
     <div className={clsx('text-2xl font-serif text-gray-800', className)}>
-      <img src="/logo.webp" alt="James & Anne Wedding" className="h-8 w-auto" />
+      <img src="/final-emblem.png" alt="James & Anne Wedding" className="h-16 w-auto" />
     </div>
   )
 }
