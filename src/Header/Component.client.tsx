@@ -97,7 +97,7 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
       <div className="container mx-auto px-4">
         <div className="py-4 flex justify-between items-center">
           <Link href="/">
-            <Logo />
+            <Logo size={isScrolled ? 'small' : 'default'} />
           </Link>
           <HeaderNav data={data} />
         </div>
