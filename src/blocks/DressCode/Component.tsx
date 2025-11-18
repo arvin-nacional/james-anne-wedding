@@ -100,7 +100,7 @@ export const DressCodeBlock: React.FC<DressCodeBlockProps> = ({
                 />
               </div>
               <CardContent className="p-6 text-center">
-                <h3 className={`text-xl font-semibold mb-2 ${textColor}`}>Parent</h3>
+                <h3 className={`text-xl font-semibold mb-2 ${textColor}`}>Parents</h3>
                 {parentAttire.guidelines && (
                   <div className={`text-sm ${subTextColor}`}>
                     <RichText data={parentAttire.guidelines} enableGutter={false} />

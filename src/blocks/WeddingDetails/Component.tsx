@@ -90,7 +90,7 @@ export const WeddingDetailsBlock: React.FC<WeddingDetailsBlockProps> = ({
                 className={`${cardClass} overflow-hidden group hover:shadow-2xl  rounded-xl transition-all duration-300 hover:scale-[1.02] ${backgroundColor === 'image' ? 'hover:bg-white/20' : ''}`}
               >
                 {detail.image && (
-                  <div className="h-[300px] overflow-hidden object-fill">
+                  <div className="h-[280px] overflow-hidden object-fill">
                     <Media
                       resource={detail.image}
                       alt={detail.imageAlt || detail.title || 'Wedding detail'}
