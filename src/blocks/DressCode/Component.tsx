@@ -92,7 +92,7 @@ export const DressCodeBlock: React.FC<DressCodeBlockProps> = ({
             <Card
               className={`${glassEffect} overflow-hidden group hover:shadow-3xl transition-all duration-500 hover:scale-[1.02] hover:bg-white/30`}
             >
-              <div className="h-[300px] overflow-hidden">
+              <div className="h-[300px] overflow-hidden max-sm:h-[250px]">
                 <Media
                   resource={parentAttire.referenceImage}
                   alt="Parent attire reference"
@@ -115,7 +115,7 @@ export const DressCodeBlock: React.FC<DressCodeBlockProps> = ({
             <Card
               className={`${glassEffect} overflow-hidden group hover:shadow-3xl transition-all duration-500 hover:scale-[1.02] hover:bg-white/30`}
             >
-              <div className="h-[300px] overflow-hidden">
+              <div className="h-[300px] overflow-hidden max-sm:h-[250px]">
                 <Media
                   resource={principalAttire.referenceImage}
                   alt="Principal attire reference"
@@ -138,7 +138,7 @@ export const DressCodeBlock: React.FC<DressCodeBlockProps> = ({
             <Card
               className={`${glassEffect} overflow-hidden group hover:shadow-3xl transition-all duration-500 hover:scale-[1.02] hover:bg-white/30`}
             >
-              <div className="h-[300px] overflow-hidden">
+              <div className="h-[300px] overflow-hidden max-sm:h-[250px]">
                 <Media
                   resource={entourageAttire.referenceImage}
                   alt="Entourage attire reference"
@@ -161,7 +161,7 @@ export const DressCodeBlock: React.FC<DressCodeBlockProps> = ({
             <Card
               className={`${glassEffect} overflow-hidden group hover:shadow-3xl transition-all duration-500 hover:scale-[1.02] hover:bg-white/30`}
             >
-              <div className="h-[300px] overflow-hidden">
+              <div className="h-[300px] max-sm:h-[250px] overflow-hidden">
                 <Media
                   resource={guestAttire.referenceImage}
                   alt="Guest attire reference"

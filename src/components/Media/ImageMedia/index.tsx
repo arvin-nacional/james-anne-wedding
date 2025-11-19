@@ -1,6 +1,6 @@
 'use client'
 
-import type { StaticImageData } from 'next/image'
+import Image, { type StaticImageData } from 'next/image'
 
 import { cn } from '@/utilities/ui'
 import React from 'react'
@@ -56,16 +56,16 @@ export const ImageMedia: React.FC<MediaProps> = (props) => {
         .join(', ')
 
   return (
-    <picture className={cn(pictureClassName)}>
-      <img
-        alt={alt || ''}
-        className={cn(imgClassName, fill ? 'object-cover w-full h-full' : '')}
-        height={!fill ? height : undefined}
-        loading={loading === 'lazy' ? 'lazy' : 'eager'}
-        src={typeof src === 'string' ? src : src.src}
-        width={!fill ? width : undefined}
-        style={fill ? { position: 'absolute', inset: 0 } : undefined}
-      />
-    </picture>
+    <Image
+      alt={alt || ''}
+      className={cn(imgClassName, fill ? 'object-cover w-full h-full' : '')}
+      src={src}
+      width={!fill ? width : undefined}
+      height={!fill ? height : undefined}
+      fill={fill}
+      loading={loading}
+      sizes={sizes}
+      style={fill ? { position: 'absolute', inset: 0 } : undefined}
+    />
   )
 }
