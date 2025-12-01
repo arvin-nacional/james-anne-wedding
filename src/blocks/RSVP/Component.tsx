@@ -39,7 +39,6 @@ export const RSVPBlock: React.FC<RSVPBlockProps> = ({
   // Form state
   const [response, setResponse] = useState<'attending' | 'not_attending' | ''>('')
   const [attendingCount, setAttendingCount] = useState(1)
-  const [dietaryRestrictions, setDietaryRestrictions] = useState('')
   const [message, setMessage] = useState('')
   const [contactEmail, setContactEmail] = useState('')
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -128,7 +127,6 @@ export const RSVPBlock: React.FC<RSVPBlockProps> = ({
         guestName: selectedGuest.fullName,
         response,
         attendingCount: response === 'attending' ? attendingCount : 0,
-        dietaryRestrictions: response === 'attending' ? dietaryRestrictions : '',
         message,
         contactEmail,
       }
@@ -161,7 +159,6 @@ export const RSVPBlock: React.FC<RSVPBlockProps> = ({
     setSearchError('')
     setResponse('')
     setAttendingCount(1)
-    setDietaryRestrictions('')
     setMessage('')
     setContactEmail('')
     setIsSubmitted(false)
@@ -363,46 +360,19 @@ export const RSVPBlock: React.FC<RSVPBlockProps> = ({
                 </div>
               </div>
 
-              {/* Additional Fields for Attending */}
+              {/* Read-only Attending Count for Attending guests */}
               {response === 'attending' && (
-                <div className="space-y-6">
-                  <div>
-                    <Label
-                      htmlFor="attending-count"
-                      className={`text-lg font-medium mb-2 block ${textColor}`}
-                    >
-                      How many people will be attending?
-                    </Label>
-                    <Input
-                      id="attending-count"
-                      type="number"
-                      min="1"
-                      max={selectedGuest.partySize}
-                      value={attendingCount}
-                      onChange={(e) => setAttendingCount(parseInt(e.target.value) || 1)}
-                      className="w-32 text-lg py-3"
-                    />
-                    <p className="text-sm text-gray-500 mt-1">
-                      Maximum {selectedGuest.partySize}{' '}
-                      {selectedGuest.partySize === 1 ? 'person' : 'people'} based on your invitation
-                    </p>
+                <div>
+                  <Label className={`text-lg font-medium mb-2 block ${textColor}`}>
+                    Number of people attending
+                  </Label>
+                  <div className="bg-gray-50 border border-gray-200 rounded-md px-4 py-3 text-lg">
+                    {attendingCount} {attendingCount === 1 ? 'person' : 'people'}
                   </div>
-
-                  <div>
-                    <Label
-                      htmlFor="dietary-restrictions"
-                      className={`text-lg font-medium mb-2 block ${textColor}`}
-                    >
-                      Dietary restrictions or special requests
-                    </Label>
-                    <Textarea
-                      id="dietary-restrictions"
-                      placeholder="Please let us know about any dietary restrictions, allergies, or special requests..."
-                      value={dietaryRestrictions}
-                      onChange={(e) => setDietaryRestrictions(e.target.value)}
-                      className="min-h-[100px]"
-                    />
-                  </div>
+                  <p className="text-sm text-gray-500 mt-1">
+                    Maximum of {selectedGuest?.partySize}{' '}
+                    {selectedGuest?.partySize === 1 ? 'person' : 'people'} based on your invitation
+                  </p>
                 </div>
               )}
 
