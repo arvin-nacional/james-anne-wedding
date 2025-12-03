@@ -79,6 +79,8 @@ export const HeroCarouselBlock: React.FC<HeroCarouselBlockProps> = ({
                 src={imageUrl || '/placeholder.svg'}
                 alt={imageAlt || `Hero image ${index + 1}`}
                 className="w-full h-full object-cover"
+                loading="eager"
+                fetchPriority="high"
               />
               <div className="absolute inset-0 bg-black/30" />
             </div>
