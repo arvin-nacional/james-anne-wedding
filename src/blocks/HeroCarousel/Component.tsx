@@ -1,12 +1,14 @@
 'use client'
 
 import React, { useState, useEffect } from 'react'
+import Image from 'next/image'
 import { Heart, ChevronLeft, ChevronRight } from 'lucide-react'
 
 import type { HeroCarouselBlock as HeroCarouselBlockProps } from '@/payload-types'
 import { CMSLink } from '@/components/Link'
 import RichText from '@/components/RichText'
 import { ParallaxWrapper } from '@/components/ParallaxWrapper'
+import { getMediaUrl } from '@/utilities/getMediaUrl'
 
 export const HeroCarouselBlock: React.FC<HeroCarouselBlockProps> = ({
   title,
@@ -63,10 +65,13 @@ export const HeroCarouselBlock: React.FC<HeroCarouselBlockProps> = ({
                 : imageItem
               : null
 
-          const imageUrl =
-            typeof image === 'object' && image !== null ? image.url : '/placeholder.svg'
+          const rawUrl = typeof image === 'object' && image !== null && image.url ? image.url : null
+          const imageUrl = rawUrl ? getMediaUrl(rawUrl) : null
           const imageAlt =
             typeof image === 'object' && image !== null ? image.alt : `Hero image ${index + 1}`
+
+          // Skip images with no valid URL
+          if (!imageUrl) return null
 
           return (
             <div
@@ -75,12 +80,13 @@ export const HeroCarouselBlock: React.FC<HeroCarouselBlockProps> = ({
                 index === currentImage ? 'opacity-100' : 'opacity-0'
               }`}
             >
-              <img
+              <Image
                 src={imageUrl || '/placeholder.svg'}
                 alt={imageAlt || `Hero image ${index + 1}`}
-                className="w-full h-full object-cover"
-                loading="eager"
-                fetchPriority="high"
+                fill
+                className="object-cover"
+                priority={index === 0}
+                sizes="100vw"
               />
               <div className="absolute inset-0 bg-black/30" />
             </div>
